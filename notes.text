@@ -1,0 +1,67 @@
+JWT
+
+install gem 'jwt'
+
+create Auth class
+
+class Auth
+  SECRET = Rails.application.secrets.jwt_secret
+
+  def self.issue(payload) payload is the thing we tokenfy
+    JWT.encode(payload, SECRET)
+  end
+
+  def encode(token)
+    JWT.decode(token, SECRET).first
+  end
+end
+
+// in Rails - secrets.yml add your secret token
+
+ under development and test:
+ jwt_secret: rake secret
+
+ for heroku under production:
+  jwt_secret: <%= ENV["JWT_SECRET"] %>
+
+//Sessions controller
+
+  to login
+  def create
+    account = Account.authenticate(account_params[:username], account_params[:passowrd])
+    if account //if login is successful
+      payload = {account_id: account.id} => payload
+      //send down token
+      token = Auth.issue(payload)
+      render json: {jwt: token}
+    else
+      render json: {error: "bad username or password"}, status: 401
+    end
+  emd
+
+// Create user controller
+  def create
+    account = Account.new(account_params)
+    if account.save
+      payload = {account_id: account.id}
+      token = Auth.issue(payload)
+      render json: {jwt: token}
+    else
+      render json: {errors: account.errors}, status: 401
+    end
+  end
+
+// Account model
+
+  has secure password
+  validates
+  def self.from_token(token)
+    account_id = Auth.decode(token)["account_id"]
+    Account.find(account_id)
+  end
+
+  def self.authenticate(username, password)
+    account = Account.find_by(username: username)
+    account && account.authenticate(password)
+  end
+end
