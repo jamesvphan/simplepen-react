@@ -17,14 +17,14 @@ class AddNote extends Component {
 		return(
 			<div>
 				<Toolbar/>
-				<div contentEditable="true" className="description modal">
+				<div contentEditable="true" className="description">
 					<h1>About SimplePen</h1>
 					<p>Simplepen is a clean and simple writing zone, to get you into that zone, where you can focus on the writing.
 					<br/><br/>SimplePen is open source on.
 					<br/><br/>If you have any questions, hit me up via.</p>
 				</div>
 				
-				<div contentEditable="true" className="saveoverlay modal">
+				<div contentEditable="true" className="saveoverlay">
 					<h1>Select save format</h1>
 					<p className='saveselection'>
 						<span data-format='markdown'>Markdown</span>

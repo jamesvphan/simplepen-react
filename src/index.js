@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import AddNote from './components/AddNote'
 //import axios from 'axios'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers/index'
+//import { Router, Route, browserHistory} from 'react-router'
 //import thunk from 'redux-thunk'
 import './index.css';
-
 
 const store = createStore(
  rootReducer,
@@ -16,7 +17,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App/>
   </Provider>,
   document.getElementById('root')
 )
