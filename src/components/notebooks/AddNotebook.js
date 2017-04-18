@@ -44,11 +44,6 @@ class AddNotebook extends Component {
 export default connect(mapStateToProps, mapDispatchToProps)(AddNotebook)
 
 function mapDispatchToProps(dispatch) {
-  // return {
-  //   addNotebook(notebookInfo){
-  //     dispatch(addNotebook(notebookInfo))
-  //   }
-  // }
   return bindActionCreators({addNotebook: addNotebook}, dispatch)
 }
 
