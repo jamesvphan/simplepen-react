@@ -6,10 +6,13 @@ import { addNotebook } from '../../actions/notebookActions'
 class AddNotebook extends Component {
   constructor() {
     super()
+     const token = window.localStorage.getItem("token")
+    // const config = { headers: { token: window.localStorage.getItem("token") } }
 
     this.state = {
       title: '',
-      description: ''
+      description: '',
+      token: ''
     }
 
     this.handleOnSubmit = this.handleOnSubmit.bind(this)

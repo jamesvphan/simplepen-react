@@ -1,4 +1,3 @@
-
 export function addNotebook(state){
   return {
     type: "ADD_NOTEBOOK",

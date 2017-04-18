@@ -9,9 +9,7 @@ class Register extends Component{
 		super(props)
 		this.state = {
 			username:"",
-			email: "",
 			password: "",
-			password_confirmation: ""
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleOnChange = this.handleOnChange.bind(this)
@@ -19,13 +17,15 @@ class Register extends Component{
 
 	handleSubmit(ev){
 		ev.preventDefault()
-		axios.post('http://localhost:3001/users',
-			{ user: {username: this.state.username, email: this.state.email, password: this.state.password ,password_confirmation: this.state.password_confirmation }
+		debugger
+		axios.post('http://localhost:3001/sessions',
+			{ user: {username: this.state.username, password: this.state.password }
 		})
 		.then(resp => {
 			
 			window.localStorage.setItem('token',resp.data.jwt)
-			
+
+			debugger
 		})
 		.catch(resp => {
 			debugger
@@ -44,9 +44,7 @@ class Register extends Component{
 			<div>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" onChange={this.handleOnChange} name="username" />
-					<input type="email" onChange={this.handleOnChange} name="email" />
 					<input type="password" onChange={this.handleOnChange} name="password" />
-					<input type="password" onChange={this.handleOnChange} name="password_confirmation" />
 					<input type="submit" />
 				</form>
 			</div>
