@@ -9,25 +9,25 @@ export default class Register extends Component{
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
-	}	
+	}
 
 	handleSubmit(ev){
 		ev.preventDefault()
-
 		axios.post('http://localhost:3001/users',
 			{ user: {username: this.state.values.username, email: this.state.values.email, password: this.state.values.password }
 		})
 		.then(resp => {
-			// this.props.setToken(resp.data.jwt)
+			debugger
+			this.props.setToken(resp.data.jwt)
 			console.log("It worked?")
 			// localStorage.setItem('token', resp.data.token);
-				debugger
+			debugger
 		})
 		.catch(resp => {
 			debugger
 		})
 	}
-	
+
 	handleChange(ev){
 
 		let newValues = this.state.values
