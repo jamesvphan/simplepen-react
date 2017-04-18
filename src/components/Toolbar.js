@@ -17,9 +17,37 @@ class Toolbar extends Component {
 
 	}
 
+
+	// function createMarkup() {
+	//   return {__html: 'First &middot; Second'};
+	// }
+	//
+	// function MyComponent() {
+	//   return <div dangerouslySetInnerHTML={createMarkup()} />;
+	// }
+
+	returnValue(test){
+		return {__html:test}
+	}
+
   handleOnBold(){
     let highlightedText = window.getSelection().toString()
-    debugger
+		var sel, range;
+		if (window.getSelection) {
+				sel = window.getSelection();
+				if (sel.rangeCount) {
+						range = sel.getRangeAt(0);
+						range.deleteContents();
+						// let testing = this.returnValue(highlightedText)
+						// return this.returnValue(highlightedText)
+						// let doc=document.createTextNode(<b dangerouslySetInnerHTML={{this.returnValue(highlightedText).__html}} />)
+						range.insertNode(document.createTextNode(`<b>${highlightedText}</b>`));
+				}
+			}
+		// } else if (document.selection && document.selection.createRange) {
+		// 		range = document.selection.createRange();
+		// 		// range.text = replacementText;
+		// }
   }
 
   handleOnItalics(){

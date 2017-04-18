@@ -23,9 +23,9 @@ class Register extends Component{
 			{ user: {username: this.state.username, email: this.state.email, password: this.state.password ,password_confirmation: this.state.password_confirmation }
 		})
 		.then(resp => {
-			
+
 			window.localStorage.setItem('token',resp.data.jwt)
-			
+
 		})
 		.catch(resp => {
 			debugger
