@@ -1,6 +1,6 @@
 
 
-export default function notebook(state = {
+export default function addNotebook(state = {
   notebooks: []
 }, action) {
   switch (action.type) {
