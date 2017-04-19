@@ -30,6 +30,7 @@ class Toolbar extends Component {
 		return {__html:test}
 	}
 
+
   handleOnBold(){
     let highlightedText = window.getSelection().toString()
 		let addBold = `<b>${highlightedText}</b>`
@@ -37,6 +38,7 @@ class Toolbar extends Component {
 		var sel, range;
 		if (window.getSelection) {
 			sel = window.getSelection();
+			console.log(sel)
 			if (sel.rangeCount) {
 				range = sel.getRangeAt(0);
 				range.deleteContents();
@@ -46,18 +48,38 @@ class Toolbar extends Component {
 				range.insertNode(document.createTextNode(`<b>${highlightedText}</b>`));
 			}
 		}
-		let els = document.getElementById("note").children
-		debugger
-		let updatedMarkup = els.map((el) => {
-			debugger
-		})
+		let els = document.getElementById("note").innerHTML //.children
 
-		debugger
-		this.props.boldText({update: updatedMarkup})
-		// } else if (document.selection && document.selection.createRange) {
-		// 		range = document.selection.createRange();
-		// 		// range.text = replacementText;
-		// }
+		// Array.prototype.map.call(els, function(el){
+		// 	console.log(el.outerHTML)
+		// })
+		// debugger		
+		
+		// let array = [... els]
+		
+		// debugger
+		// let updatedMarkup = array.map((el) => {
+		// 	console.log(el)
+		// 	return el.outerHTML
+		// })
+		let test = els.search("<b>")
+		console.log(test)
+		// console.log("Markup: " + updatedMarkup.join(''))
+		
+		let newThing
+		if (test === -1 ){
+			// newThing = els.replace('&lt;b&gt;', '<b>').replace('&lt;/b&gt;', '</b>')
+			newThing = els.replace(/&lt;b&gt;/g , "<b>").replace('&lt;/b&gt;', '</b>')
+		} else {
+
+			newThing = els.replace('<b>&lt;b&gt;', '').replace('&lt;/b&gt;</b>', '')
+
+		}
+
+		
+
+		this.props.boldText({update: newThing})
+
   }
 
 

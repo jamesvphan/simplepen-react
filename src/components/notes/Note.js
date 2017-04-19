@@ -23,15 +23,6 @@ class Note extends Component {
 				<Toolbar state={this.state}/>
 				<div dangerouslySetInnerHTML={{__html:object}} contentEditable="true" className="description" id="note">
 				</div>
-
-				<div contentEditable="true" className="saveoverlay">
-					<h1>Select save format</h1>
-					<p className='saveselection'>
-						<span data-format='markdown'>Markdown</span>
-						<span data-format='html'>HTML</span>
-						<span data-format='plain'>Plain Text</span>
-					</p>
-				</div>
 			</div>
 		)
 	}
