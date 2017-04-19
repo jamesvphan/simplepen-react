@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addNote } from '../actions/noteActions'
 import Toolbar from './Toolbar'
+import { Link } from 'react-router-dom'
 
 class AddNote extends Component {
   	constructor() {
@@ -23,7 +24,7 @@ class AddNote extends Component {
 					<br/><br/>SimplePen is open source on.
 					<br/><br/>If you have any questions, hit me up via.</p>
 				</div>
-				
+
 				<div contentEditable="true" className="saveoverlay">
 					<h1>Select save format</h1>
 					<p className='saveselection'>
