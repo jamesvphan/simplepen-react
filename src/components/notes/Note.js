@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addNote } from '../actions/noteActions'
-import Toolbar from './Toolbar'
-import { Link } from 'react-router-dom'
+import { addNote, boldText } from '../../actions/noteActions'
+import Toolbar from '../Toolbar'
+import { NavLink } from 'react-router-dom'
+//import '../../App.css';
 
-class AddNote extends Component {
+class Note extends Component {
   	constructor() {
     	super()
      	// const token = window.localStorage.getItem("token")
 	    // const config = { headers: { token: window.localStorage.getItem("token") } }
-	    this.state = {
-
-	    }
+	    // this.state = {
+      //   body: this.props.notebook
+	    // }
 	}
 	render(){
-    let object="<b>test</b>"
+    let object = this.props.note.body
 
 		return(
 			<div>
-				<Toolbar/>
-				<div dangerouslySetInnerHTML={{__html:object}} contentEditable="true" className="description">
-
+				<Toolbar state={this.state}/>
+				<div dangerouslySetInnerHTML={{__html:object}} contentEditable="true" className="description" id="note">
 				</div>
 
 				<div contentEditable="true" className="saveoverlay">
@@ -37,12 +37,15 @@ class AddNote extends Component {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNote)
+export default connect(mapStateToProps, mapDispatchToProps)(Note)
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({addNote: addNote}, dispatch)
+  return bindActionCreators({
+    addNote: addNote,
+    boldText: boldText
+  }, dispatch)
 }
 
 function mapStateToProps(state) {
-  return {values: state.values}
+  return {note: state.noteReducer}
 }

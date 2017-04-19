@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Userinput from './components/Userinput';
 import Login from './components/Login';
-import AddNotebook from './components/notebooks/AddNotebook'
-import AddNote from './components/AddNote'
+import NotebookForm from './components/notebooks/NotebookForm'
+import Note from './components/notes/Note'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello</h1>
+        <h1>Welcome to SimplePen</h1>
         <Userinput />
         <Login />
-        <AddNotebook />
-        <AddNote />
+        <NotebookForm />
+        <Note />
       </div>
     );
   }
