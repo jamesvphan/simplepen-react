@@ -6,7 +6,7 @@ import AddNote from './components/AddNote'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers/index'
-//import { Router, Route, browserHistory} from 'react-router'
+import { BrowserRouter as Router, Route, IndexRoute, browserHistory} from 'react-router-dom'
 //import thunk from 'redux-thunk'
 import './index.css';
 
@@ -17,7 +17,12 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App/>
+    <Router history={browserHistory}>
+      <div>
+        <Route path='/' component={App}></Route>
+        <Route path='/notes' component={AddNote}></Route>
+      </div>
+    </Router>
   </Provider>,
   document.getElementById('root')
 )

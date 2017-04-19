@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addNote } from '../actions/noteActions'
 import Toolbar from './Toolbar'
+import { Link } from 'react-router-dom'
 
 class AddNote extends Component {
   	constructor() {
