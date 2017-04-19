@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { setToken } from '../actions/Account.js'
 
-class Register extends Component{
+class Login extends Component{
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -52,7 +52,7 @@ class Register extends Component{
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({setToken: setToken}, dispatch)

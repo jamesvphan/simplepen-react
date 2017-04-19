@@ -14,3 +14,10 @@ export function boldText(state){
     updatedNote: state.update
   }
 }
+
+export function italicsText(state){
+  return {
+    type: "ITALICS_TEXT",
+    updatedNote: state.update
+  }
+}

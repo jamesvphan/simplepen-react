@@ -8,6 +8,10 @@ export default function noteReducer(state = {
       //do the actual bolding
       //debugger
       return Object.assign({}, state, {body: action.updatedNote})
+
+      case "ITALICS_TEXT":
+        return Object.assign({}, state, {body: action.updatedNote})
+
     default:
       return state
   }

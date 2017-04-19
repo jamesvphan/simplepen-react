@@ -14,15 +14,31 @@ class Note extends Component {
 	    // this.state = {
       //   body: this.props.notebook
 	    // }
+      this.handleOnChange = this.handleOnChange.bind(this)
+
 	}
+
+  handleOnChange(){
+    this.setState({
+      body: this.props.note.body
+    })
+  }
+
+  handleOnClick(){
+    
+  }
 	render(){
     let object = this.props.note.body
 
 		return(
 			<div>
+
 				<Toolbar state={this.state}/>
-				<div dangerouslySetInnerHTML={{__html:object}} contentEditable="true" className="description" id="note">
-				</div>
+				<div onChange={this.handleOnChange} dangerouslySetInnerHTML={{__html:object}} contentEditable="true" className="description" id="note">
+
+
+        </div>
+          <button onClick={this.handleOnClick}>Save</button>
 			</div>
 		)
 	}
