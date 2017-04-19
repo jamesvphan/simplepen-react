@@ -1,8 +1,6 @@
 
 
-export default function addNotebook(state = {
-  notebooks: []
-}, action) {
+export default function notebookReducer(state = [], action) {
   switch (action.type) {
     case "ADD_NOTEBOOK":
       return Object.assign(state, {

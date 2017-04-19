@@ -43,11 +43,11 @@ class Register extends Component{
 		return(
 			<div>
 				<form onSubmit={this.handleSubmit}>
-					<input type="text" onChange={this.handleOnChange} name="username" />
-					<input type="email" onChange={this.handleOnChange} name="email" />
-					<input type="password" onChange={this.handleOnChange} name="password" />
-					<input type="password" onChange={this.handleOnChange} name="password_confirmation" />
-					<input type="submit" />
+					Username:<input type="text" onChange={this.handleOnChange} name="username" /> <br/>
+					Email:<input type="email" onChange={this.handleOnChange} name="email" /> <br/>
+					Password:<input type="password" onChange={this.handleOnChange} name="password" /> <br/>
+					Confirm Password:<input type="password" onChange={this.handleOnChange} name="password_confirmation" /> <br/>
+					<input type="submit" value="Sign Up"/>
 				</form>
 			</div>
 		);

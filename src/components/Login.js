@@ -22,7 +22,7 @@ class Register extends Component{
 			{ user: {username: this.state.username, password: this.state.password }
 		})
 		.then(resp => {
-			
+
 			window.localStorage.setItem('token',resp.data.jwt)
 
 			debugger
@@ -43,9 +43,9 @@ class Register extends Component{
 		return(
 			<div>
 				<form onSubmit={this.handleSubmit}>
-					<input type="text" onChange={this.handleOnChange} name="username" />
-					<input type="password" onChange={this.handleOnChange} name="password" />
-					<input type="submit" />
+					Username:<input type="text" onChange={this.handleOnChange} name="username" /> <br/>
+					Password:<input type="password" onChange={this.handleOnChange} name="password" /> <br/>
+					<input type="submit" value="Log In"/>
 				</form>
 			</div>
 		);

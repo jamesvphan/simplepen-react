@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addToolbar } from '../actions/toolbarAction'
+import { boldText } from '../actions/noteActions'
 
 class Toolbar extends Component {
 	constructor() {
@@ -17,7 +18,6 @@ class Toolbar extends Component {
 
 	}
 
-
 	// function createMarkup() {
 	//   return {__html: 'First &middot; Second'};
 	// }
@@ -32,23 +32,34 @@ class Toolbar extends Component {
 
   handleOnBold(){
     let highlightedText = window.getSelection().toString()
+		let addBold = `<b>${highlightedText}</b>`
+
 		var sel, range;
 		if (window.getSelection) {
-				sel = window.getSelection();
-				if (sel.rangeCount) {
-						range = sel.getRangeAt(0);
-						range.deleteContents();
-						// let testing = this.returnValue(highlightedText)
-						// return this.returnValue(highlightedText)
-						// let doc=document.createTextNode(<b dangerouslySetInnerHTML={{this.returnValue(highlightedText).__html}} />)
-						range.insertNode(document.createTextNode(`<b>${highlightedText}</b>`));
-				}
+			sel = window.getSelection();
+			if (sel.rangeCount) {
+				range = sel.getRangeAt(0);
+				range.deleteContents();
+				// let testing = this.returnValue(highlightedText)
+				// return this.returnValue(highlightedText)
+				// let doc=document.createTextNode(<b dangerouslySetInnerHTML={{this.returnValue(highlightedText).__html}} />)
+				range.insertNode(document.createTextNode(`<b>${highlightedText}</b>`));
 			}
+		}
+		let els = document.getElementById("note").children
+		debugger
+		let updatedMarkup = els.map((el) => {
+			debugger
+		})
+
+		debugger
+		this.props.boldText({update: updatedMarkup})
 		// } else if (document.selection && document.selection.createRange) {
 		// 		range = document.selection.createRange();
 		// 		// range.text = replacementText;
 		// }
   }
+
 
   handleOnItalics(){
 
@@ -91,7 +102,9 @@ class Toolbar extends Component {
 export default connect(mapStateToProps, mapDispatchToProps)(Toolbar)
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({Toolbar: Toolbar}, dispatch)
+  return bindActionCreators({
+		boldText: boldText
+	}, dispatch)
 }
 
 function mapStateToProps(state) {

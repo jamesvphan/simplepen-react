@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addNotebook } from '../../actions/notebookActions'
 
-class AddNotebook extends Component {
+class NotebookForm extends Component {
   constructor() {
     super()
      const token = window.localStorage.getItem("token")
@@ -44,7 +44,7 @@ class AddNotebook extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNotebook)
+export default connect(mapStateToProps, mapDispatchToProps)(NotebookForm)
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({addNotebook: addNotebook}, dispatch)
