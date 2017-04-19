@@ -7,3 +7,10 @@ export function addNote(state){
     }
   }
 }
+
+export function boldText(state){
+  return {
+    type: "BOLD_TEXT",
+    updatedNote: state.update
+  }
+}
