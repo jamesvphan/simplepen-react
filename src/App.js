@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
-import Userinput from './components/Userinput';
+import Register from './components/Register';
 import Login from './components/Login';
 import NotebookForm from './components/notebooks/NotebookForm'
 import Note from './components/notes/Note'
@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Welcome to SimplePen</h1>
-        <Userinput />
+        <Register />
         <Login />
         <NotebookForm />
         <Note />
