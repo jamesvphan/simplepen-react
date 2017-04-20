@@ -22,17 +22,28 @@ import Note from './components/notes/Note'
 import Login from './components/Login'
 import NotebookForm from './components/notebooks/NotebookForm'
 import Register from './components/Register'
+import { composeWithDevTools } from 'redux-devtools-extension';
 //import axios from 'axios'
 import './index.css';
 
 const history = createHistory()
 const rMiddleware = routerMiddleware(history)
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(rMiddleware, thunk)
+let initialState = {session: {token: window.localStorage.getItem("token")}}
+
+
+let store = createStore(
+  rootReducer, 
+  initialState, 
+  composeWithDevTools(applyMiddleware(thunk, rMiddleware))
 )
+
+
+// const store = createStore(
+//   rootReducer, initialState,
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+//   applyMiddleware(rMiddleware, thunk)
+// )
 
 //this.props.history.push('/notes')
 ReactDOM.render(

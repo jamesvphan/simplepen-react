@@ -7,8 +7,9 @@ export const setToken = (token) => ({
 
 // Make request to Rails API to create a new user, then dispatch LOGIN action
 export const addUser = (state) => {
+ debugger
   return(dispatch) => {
-    debugger
+
     axios
     .post('http://localhost:3001/users', {
       user: {
@@ -20,7 +21,7 @@ export const addUser = (state) => {
     })
     .then((resp) => {
       debugger
-      window.localStorage.setItem('current_user', resp.data.jwt)
+      window.localStorage.setItem('token', resp.data.jwt)
       dispatch({
         type: 'LOGIN',
         token: resp.data.jwt
@@ -42,7 +43,7 @@ export const login = (state) => {
       }
     })
     .then((resp) => {
-      window.localStorage.setItem('current_user', resp.data.jwt)
+      window.localStorage.setItem('token', resp.data.jwt)
       dispatch({
         type: 'LOGIN',
         token: resp.data.jwt

@@ -11,10 +11,11 @@ import './App.css';
 
 class App extends Component {
   render() {
+
     return (
       <div className="App">
         <h1>Welcome to SimplePen</h1>
-        {(!!this.props.token) ? <Route path='/notes' component={Note} /> :
+        {(!!this.props.token) ? this.props.history.push('/notes') :
           <div>
             <Register register={this.props.register}/>
             <Login />
@@ -25,6 +26,11 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    token: state.session.token,
+  }
+} 
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
@@ -35,4 +41,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

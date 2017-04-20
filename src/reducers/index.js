@@ -10,7 +10,6 @@ import manageSessionReducer from './manageSessionReducer'
 const rootReducer = combineReducers({
   notebooks: notebookReducer,
   noteReducer: noteReducer,
-  addToken: addTokenReducer,
   session: manageSessionReducer
 })
 

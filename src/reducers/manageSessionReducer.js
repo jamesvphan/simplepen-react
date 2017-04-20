@@ -3,6 +3,7 @@ export default function manageSession(state = {
 }, action) {
   switch(action.type) {
     case 'LOGIN':
+    	debugger
       return {token: action.token}
     case 'LOGOUT':
       return {token: ''}
