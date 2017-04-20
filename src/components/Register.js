@@ -19,7 +19,6 @@ class Register extends Component{
 
 	handleSubmit(ev){
 		ev.preventDefault()
-		debugger
 		this.props.register(this.state)
 	}
 

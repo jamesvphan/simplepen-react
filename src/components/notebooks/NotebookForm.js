@@ -12,7 +12,6 @@ class NotebookForm extends Component {
     this.state = {
       title: '',
       description: '',
-      token: ''
     }
 
     this.handleOnSubmit = this.handleOnSubmit.bind(this)
@@ -21,6 +20,7 @@ class NotebookForm extends Component {
 
   handleOnSubmit(ev){
     ev.preventDefault()
+    debugger
     this.props.addNotebook(this.state)
   }
 
@@ -51,5 +51,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return {values: state.values}
+  return {
+    title: state.title,
+    description: state.description,
+  }
 }
