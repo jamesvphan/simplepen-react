@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import axios from 'axios'
+//import axios from 'axios'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { setToken } from '../actions/Account.js'
@@ -8,10 +8,10 @@ class Register extends Component{
 	constructor(props) {
 		super(props)
 		this.state = {
-			username:"",
-			email: "",
-			password: "",
-			password_confirmation: ""
+			username: '',
+			email: '',
+			password: '',
+			password_confirmation: ''
 		}
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleOnChange = this.handleOnChange.bind(this)
@@ -19,17 +19,7 @@ class Register extends Component{
 
 	handleSubmit(ev){
 		ev.preventDefault()
-		axios.post('http://localhost:3001/users',
-			{ user: {username: this.state.username, email: this.state.email, password: this.state.password ,password_confirmation: this.state.password_confirmation }
-		})
-		.then(resp => {
-
-			window.localStorage.setItem('token',resp.data.jwt)
-
-		})
-		.catch(resp => {
-			debugger
-		})
+		this.props.register(this.state)
 	}
 
 	handleOnChange(ev){
@@ -54,12 +44,19 @@ class Register extends Component{
 	}
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+		setToken: setToken
+	}, dispatch)
+}
+
+const mapStateToProps = (state) => {
+  return {
+		username: state.username,
+		email: state.email,
+		password: state.password,
+		password_confirmation: state.password_confirmation
+	}
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(Register)
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({setToken: setToken}, dispatch)
-}
-
-function mapStateToProps(state) {
-  return {values: state.values}
-}

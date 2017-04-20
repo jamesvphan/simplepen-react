@@ -6,7 +6,7 @@ import { addNotebook } from '../../actions/notebookActions'
 class NotebookForm extends Component {
   constructor() {
     super()
-     const token = window.localStorage.getItem("token")
+    //const token = window.localStorage.getItem("token")
     // const config = { headers: { token: window.localStorage.getItem("token") } }
 
     this.state = {

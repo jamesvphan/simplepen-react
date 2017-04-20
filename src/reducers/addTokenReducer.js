@@ -1,7 +1,7 @@
 
 
 export default function addToken(state = {
-  token: ""
+  token: ''
 }, action) {
   switch (action.type) {
     case "SET_TOKEN":

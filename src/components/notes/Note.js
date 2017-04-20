@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addNote, boldText } from '../../actions/noteActions'
 import Toolbar from '../Toolbar'
-import { NavLink } from 'react-router-dom'
+//import { NavLink } from 'react-router-dom'
 //import '../../App.css';
 
 class Note extends Component {
@@ -25,20 +25,22 @@ class Note extends Component {
   }
 
   handleOnClick(){
-    
+
   }
 	render(){
     let object = this.props.note.body
 
 		return(
 			<div>
-
 				<Toolbar state={this.state}/>
-				<div onChange={this.handleOnChange} dangerouslySetInnerHTML={{__html:object}} contentEditable="true" className="description" id="note">
-
-
+				<div
+          id="note"
+          className="description"
+          contentEditable="true"
+          onChange={this.handleOnChange}
+          dangerouslySetInnerHTML={{__html:object}} >
         </div>
-          <button onClick={this.handleOnClick}>Save</button>
+        <button onClick={this.handleOnClick}>Save</button>
 			</div>
 		)
 	}
