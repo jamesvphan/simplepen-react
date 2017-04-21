@@ -4,16 +4,17 @@ import { bindActionCreators } from 'redux'
 import { addToolbar } from '../actions/toolbarAction'
 import { boldText } from '../actions/noteActions'
 import { italicsText } from '../actions/noteActions'
+import { saveNote } from '../actions/Account'
 
 class Toolbar extends Component {
 	constructor() {
   	super()
     this.state = {
-
     }
 
     this.handleOnBold = this.handleOnBold.bind(this)
     this.handleOnItalics = this.handleOnItalics.bind(this)
+		this.handleSave = this.handleSave.bind(this)
 
 	}
 
@@ -21,65 +22,49 @@ class Toolbar extends Component {
 		return {__html:test}
 	}
 
+	handleSave(){
+		debugger
+		let title = document.getElementById("title").value
+		let els = document.getElementById("note").innerHTML
+		this.props.saveNote(this.props.token, els, title)
+	}
 
   handleOnBold(){
-    let highlightedText = window.getSelection().toString()
-		let addBold = `<b>${highlightedText}</b>`
-
-		var sel, range;
-		if (window.getSelection) {
-			sel = window.getSelection();
-			console.log(sel)
-			if (sel.rangeCount) {
-				range = sel.getRangeAt(0);
-				range.deleteContents();
-
-				range.insertNode(document.createTextNode(`<b>${highlightedText}</b>`));
-			}
-		}
-		let els = document.getElementById("note").innerHTML //.children
-
-		let test = els.search("<b>")
-
-		let newThing
-		if (test === -1 ){
-			newThing = els.replace(/&lt;b&gt;/g , "<b>").replace('&lt;/b&gt;', '</b>')
-		} else {
-			newThing = els.replace('<b>&lt;b&gt;', '').replace('&lt;/b&gt;</b>', '')
-		}
-		this.props.boldText({update: newThing})
+		document.execCommand("bold", false, '')
+    //
+		// let addBold = `<b>${highlightedText}</b>`
+		//
+		// var sel, range;
+		// if (window.getSelection) {
+		// 	sel = window.getSelection();
+		// 	console.log(sel)
+		// 	if (sel.rangeCount) {
+		// 		range = sel.getRangeAt(0);
+		// 		range.deleteContents();
+		//
+		// 		range.insertNode(document.createTextNode(`<b>${highlightedText}</b>`));
+		// 	}
+		// }
+		// let els = document.getElementById("note").innerHTML //.children
+		//
+		// let test = els.search("<b>")
+		//
+		// let newThing
+		// if (test === -1 ){
+		// 	newThing = els.replace(/&lt;b&gt;/g , "<b>").replace('&lt;/b&gt;', '</b>')
+		// } else {
+		// 	newThing = els.replace('<b>&lt;b&gt;', '').replace('&lt;/b&gt;</b>', '')
+		// }
+		// this.props.boldText({update: newThing})
 
   }
 
 	handleOnItalics(){
-	  let highlightedText = window.getSelection().toString()
-	  let addItalics = `<em>${highlightedText}</em>`
-
-	  var sel, range;
-	  if (window.getSelection) {
-	    sel = window.getSelection();
-	    console.log(sel)
-	    if (sel.rangeCount) {
-	      range = sel.getRangeAt(0);
-	      range.deleteContents();
-
-	      range.insertNode(document.createTextNode(`<em>${highlightedText}</em>`));
-
-	    }
+		document.execCommand("italic", false, '')
 	  }
-	  let els = document.getElementById("note").innerHTML //.children
-		console.log(els);
-	  let test = els.search("<em>")
 
-	  let newThing
-	  if (test === -1 ){
-	    newThing = els.replace('&lt;em&gt;' , "<em>").replace('&lt;/em&gt;', '</em>')
-	  } else {
-	    newThing = els.replace('<em>&lt;em&gt;', '').replace('&lt;/em&gt;</em>', '')
-	  }
-	  this.props.italicsText({update: newThing})
 
-	}
+
 
 
 
@@ -104,7 +89,7 @@ class Toolbar extends Component {
               <span className="glyphicon glyphicon-italic"></span>
             </button>
 
-  					<button className="save useicons" title="Save Text">
+  					<button onClick={this.handleSave} className="save useicons" title="Save Text">
               <span className="glyphicon glyphicon-floppy-disk"></span>
             </button>
   				</div>
@@ -124,9 +109,10 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
 		boldText: boldText,
 		italicsText: italicsText,
+		saveNote: saveNote,
 	}, dispatch)
 }
 
 function mapStateToProps(state) {
-  return {values: state.values}
+  return {token: state.session.token}
 }

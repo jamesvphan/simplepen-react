@@ -19,6 +19,8 @@ import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducers/index'
 import App from './App';
 import Note from './components/notes/Note'
+import Notebook from './components/notebooks/Notebook'
+import Notebooks from './components/notebooks/Notebooks'
 import Login from './components/Login'
 import NotebookForm from './components/notebooks/NotebookForm'
 import Register from './components/Register'
@@ -64,7 +66,9 @@ ReactDOM.render(
         <Route path='/login' component={Login}></Route>
         <Route path='/register' component={Register}></Route>
         <Route path='/notes' component={Note}></Route>
-        <Route path='/notebook' component={NotebookForm}></Route>
+        <Route path='/add-notebook' component={NotebookForm}></Route>
+        <Route path='/notebook' component={Notebook}></Route>
+        <Route path='/notebooks' component={Notebooks}></Route>
       </div>
     </Router>
   </Provider>,

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addNotebook } from '../../actions/notebookActions'
+import { addNotebook, setUser } from '../../actions/Account'
+
 
 class NotebookForm extends Component {
   constructor(props) {
@@ -18,6 +19,12 @@ class NotebookForm extends Component {
     this.handleOnChange = this.handleOnChange.bind(this)
   }
 
+  componentWillMount() {
+      debugger
+      if (this.props.token) {
+        this.props.setUser(this.props.token)
+      }
+    }
   handleOnSubmit(ev){
     ev.preventDefault()
     debugger
@@ -53,7 +60,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addNotebook: addNotebook
+    addNotebook: addNotebook,
+    setUser: setUser
   }, dispatch)
 }
 

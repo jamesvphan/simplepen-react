@@ -75,3 +75,54 @@ export const login = (state) => {
     })
   }
 }
+
+export const addNotebook = (token, notebook) => {
+ return(dispatch) => {
+   axios
+   .post(`http://localhost:3001/notebooks`, {
+     headers: {token: token},
+     notebook: notebook
+   })
+   .then((resp) => {
+     debugger
+     dispatch({
+       type: 'ADD_NOTEBOOK',
+       notebook: resp.data
+     })
+   })
+   .catch((errors) => {
+     console.log(errors)
+   })
+ }
+}
+
+export function addToolbar(state){
+  return {
+    type: "ADD_TOOLBAR"
+  }
+}
+
+
+export const saveNote = (token, note, title) => {
+  debugger
+ return(dispatch) => {
+   axios
+   .post(`http://localhost:3001/notes`, {
+     headers: {token: token},
+     note: {
+       body: note,
+       title: title
+     }
+   })
+   .then((resp) => {
+     debugger
+     dispatch({
+       type: 'SAVE_NOTE',
+       note: resp.data
+     })
+   })
+   .catch((errors) => {
+     console.log(errors)
+   })
+ }
+}

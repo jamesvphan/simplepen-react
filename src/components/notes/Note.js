@@ -11,16 +11,24 @@ class Note extends Component {
     	super()
      	// const token = window.localStorage.getItem("token")
 	    // const config = { headers: { token: window.localStorage.getItem("token") } }
-	    // this.state = {
-      //   body: this.props.notebook
-	    // }
+	    this.state = {
+        title: ''
+	    }
       this.handleOnChange = this.handleOnChange.bind(this)
+      this.handleTitleChange = this.handleTitleChange.bind(this)
 
 	}
 
   handleOnChange(){
     this.setState({
       body: this.props.note.body
+    })
+  }
+
+  handleTitleChange(ev){
+    let name = ev.target.name
+    this.setState({
+      [name]: ev.target.value
     })
   }
 
@@ -32,6 +40,7 @@ class Note extends Component {
 
 		return(
 			<div>
+        <input type="text" value={this.state.title} name="title" id="title" onChange={this.handleTitleChange} />
 				<Toolbar state={this.state}/>
 				<div
           id="note"
@@ -40,7 +49,7 @@ class Note extends Component {
           onChange={this.handleOnChange}
           dangerouslySetInnerHTML={{__html:object}} >
         </div>
-        <button onClick={this.handleOnClick}>Save</button>
+
 			</div>
 		)
 	}
