@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux'
 import { addNotebook } from '../../actions/notebookActions'
 
 class NotebookForm extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     //const token = window.localStorage.getItem("token")
     // const config = { headers: { token: window.localStorage.getItem("token") } }
 
@@ -21,7 +21,7 @@ class NotebookForm extends Component {
   handleOnSubmit(ev){
     ev.preventDefault()
     debugger
-    this.props.addNotebook(this.state)
+    this.props.addNotebook(this.props.token, this.state)
   }
 
   handleOnChange(ev){
@@ -44,15 +44,17 @@ class NotebookForm extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NotebookForm)
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({addNotebook: addNotebook}, dispatch)
-}
-
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
-    title: state.title,
-    description: state.description,
+    token: state.session.token,
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addNotebook: addNotebook
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotebookForm)

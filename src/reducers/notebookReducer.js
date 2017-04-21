@@ -1,15 +1,11 @@
 
 
-export default function notebookReducer(state = {
-  account: {
-    notebooks: []
-}}, action) {
+
+export default function notebookReducer(state = [], action) {
   switch (action.type) {
     case "ADD_NOTEBOOK":
     debugger
-      return Object.assign(state, {
-        notebooks: state.account.notebooks.concat(action.notebook)
-      })
+      return [...state, action.notebook]
     default:
       return state
   }
