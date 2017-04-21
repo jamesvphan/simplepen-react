@@ -5,6 +5,7 @@ import { Link, Route } from 'react-router-dom'
 import Register from './components/Register';
 import Login from './components/Login';
 import NotebookForm from './components/notebooks/NotebookForm'
+import Notebooks from './components/notebooks/Notebooks'
 import Note from './components/notes/Note'
 import { setToken, addUser, login, setUser } from './actions/Account'
 import './App.css';
@@ -26,6 +27,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Notebooks />
         <h1>Welcome to SimplePen</h1>
         {(!!this.props.token) ? this.props.history.push('/notebook') :
           <div>
