@@ -5,6 +5,28 @@ export const setToken = (token) => ({
   payload: token
 })
 
+export const setUser = (token) => {
+  debugger
+  return(dispatch) => {
+    axios
+    .post(`http://localhost:3001/user`, {
+      headers: {token: token}
+    })
+    .then((resp) => {
+      debugger
+      dispatch({
+        type: 'SET_USER',
+        user: resp.data
+      })
+    })
+    .catch((errors) => {
+      debugger
+      console.log(errors)
+    })
+  }
+}
+
+
 // Make request to Rails API to create a new user, then dispatch LOGIN action
 export const addUser = (state) => {
  debugger
@@ -36,11 +58,10 @@ export const addUser = (state) => {
 export const login = (state) => {
   return(dispatch) => {
     axios
-    .post('http://localhost:3001/sessions', {
-      user: {
-        username: state.username,
-        password: state.password
-      }
+    .post('http://localhost:3001/sessions',
+    {
+      username: state.username,
+      password: state.password
     })
     .then((resp) => {
       window.localStorage.setItem('token', resp.data.jwt)
@@ -53,4 +74,55 @@ export const login = (state) => {
       console.log(errors)
     })
   }
+}
+
+export const addNotebook = (token, notebook) => {
+ return(dispatch) => {
+   axios
+   .post(`http://localhost:3001/notebooks`, {
+     headers: {token: token},
+     notebook: notebook
+   })
+   .then((resp) => {
+     debugger
+     dispatch({
+       type: 'ADD_NOTEBOOK',
+       notebook: resp.data
+     })
+   })
+   .catch((errors) => {
+     console.log(errors)
+   })
+ }
+}
+
+export function addToolbar(state){
+  return {
+    type: "ADD_TOOLBAR"
+  }
+}
+
+
+export const saveNote = (token, note, title) => {
+  debugger
+ return(dispatch) => {
+   axios
+   .post(`http://localhost:3001/notes`, {
+     headers: {token: token},
+     note: {
+       body: note,
+       title: title
+     }
+   })
+   .then((resp) => {
+     debugger
+     dispatch({
+       type: 'SAVE_NOTE',
+       note: resp.data
+     })
+   })
+   .catch((errors) => {
+     console.log(errors)
+   })
+ }
 }

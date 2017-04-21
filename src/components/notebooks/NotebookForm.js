@@ -1,27 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addNotebook } from '../../actions/notebookActions'
+import { addNotebook, setUser } from '../../actions/Account'
+
 
 class NotebookForm extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     //const token = window.localStorage.getItem("token")
     // const config = { headers: { token: window.localStorage.getItem("token") } }
 
     this.state = {
       title: '',
       description: '',
-      token: ''
     }
 
     this.handleOnSubmit = this.handleOnSubmit.bind(this)
     this.handleOnChange = this.handleOnChange.bind(this)
   }
 
+  componentWillMount() {
+      debugger
+      if (this.props.token) {
+        this.props.setUser(this.props.token)
+      }
+    }
   handleOnSubmit(ev){
     ev.preventDefault()
-    this.props.addNotebook(this.state)
+    debugger
+    this.props.addNotebook(this.props.token, this.state)
   }
 
   handleOnChange(ev){
@@ -44,12 +51,18 @@ class NotebookForm extends Component {
   }
 }
 
+
+const mapStateToProps = (state) => {
+  return {
+    token: state.session.token,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addNotebook: addNotebook,
+    setUser: setUser
+  }, dispatch)
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(NotebookForm)
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({addNotebook: addNotebook}, dispatch)
-}
-
-function mapStateToProps(state) {
-  return {values: state.values}
-}

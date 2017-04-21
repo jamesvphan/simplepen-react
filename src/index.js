@@ -19,6 +19,8 @@ import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducers/index'
 import App from './App';
 import Note from './components/notes/Note'
+import Notebook from './components/notebooks/Notebook'
+import Notebooks from './components/notebooks/Notebooks'
 import Login from './components/Login'
 import NotebookForm from './components/notebooks/NotebookForm'
 import Register from './components/Register'
@@ -29,12 +31,22 @@ import './index.css';
 const history = createHistory()
 const rMiddleware = routerMiddleware(history)
 
-let initialState = {session: {token: window.localStorage.getItem("token")}}
+let initialState = {
+  session: {
+    token: window.localStorage.getItem("token")
+  },
+  account: {
+    notebooks: [],
+    id: '',
+    username: '',
+    email: ''
+  }
+}
 
 
 let store = createStore(
-  rootReducer, 
-  initialState, 
+  rootReducer,
+  initialState,
   composeWithDevTools(applyMiddleware(thunk, rMiddleware))
 )
 
@@ -55,6 +67,8 @@ ReactDOM.render(
         <Route path='/register' component={Register}></Route>
         <Route path='/notes' component={Note}></Route>
         <Route path='/add-notebook' component={NotebookForm}></Route>
+        <Route path='/notebook' component={Notebook}></Route>
+        <Route path='/notebooks' component={Notebooks}></Route>
       </div>
     </Router>
   </Provider>,

@@ -18,18 +18,7 @@ class Login extends Component{
 	handleSubmit(ev){
 		ev.preventDefault()
 		debugger
-		axios.post('http://localhost:3001/sessions',
-			{ user: {username: this.state.username, password: this.state.password }
-		})
-		.then(resp => {
-
-			window.localStorage.setItem('token',resp.data.jwt)
-
-			debugger
-		})
-		.catch(resp => {
-			debugger
-		})
+		this.props.login(this.state)
 	}
 
 	handleOnChange(ev){
