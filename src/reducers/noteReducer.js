@@ -1,18 +1,17 @@
 
 export default function noteReducer(state = {
+  id: '',
   title: '',
-  body: "<h1>This is a header tag.</h1><p>This is a paragraph.</p>"
+  body: ''
 }, action) {
-  switch (action.type) {
-    case "BOLD_TEXT":
-      //do the actual bolding
-      //debugger
-      return Object.assign({}, state, {body: action.updatedNote})
-
-      case "ITALICS_TEXT":
-        return Object.assign({}, state, {body: action.updatedNote})
-
+  switch(action.type) {
+    case 'LOAD_NOTE':
+    return Object.assign({}, state, {
+      id: action.note.id,
+      title: action.note.title,
+      body: action.note.body
+    })
     default:
-      return state
+    return state
   }
 }

@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addNote, boldText } from '../../actions/noteActions'
+import { addNote, boldText, loadNote } from '../../actions/Account'
 import Toolbar from '../Toolbar'
-//import { NavLink } from 'react-router-dom'
-//import '../../App.css';
 
 class Note extends Component {
   	constructor() {
@@ -12,12 +10,24 @@ class Note extends Component {
      	// const token = window.localStorage.getItem("token")
 	    // const config = { headers: { token: window.localStorage.getItem("token") } }
 	    this.state = {
-        title: ''
+        currentNote: null
 	    }
       this.handleOnChange = this.handleOnChange.bind(this)
       this.handleTitleChange = this.handleTitleChange.bind(this)
 
 	}
+
+  componentWillMount() {
+    debugger
+    let note_id = this.props.match.params.noteid
+    let notebook_id = this.props.match.params.notebookid
+    if (note_id) {
+      this.setState({
+        currentNode: note_id
+      })
+    }
+    this.props.loadNote(this.props.token, notebook_id, note_id)
+  }
 
   handleOnChange(){
     this.setState({
@@ -55,15 +65,19 @@ class Note extends Component {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Note)
-
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     addNote: addNote,
-    boldText: boldText
+    boldText: boldText,
+    loadNote: loadNote
   }, dispatch)
 }
 
-function mapStateToProps(state) {
-  return {note: state.noteReducer}
+const mapStateToProps = (state) => {
+  return {
+    token: state.session.token,
+    currentNote: state.note
+  }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Note)

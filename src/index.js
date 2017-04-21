@@ -51,12 +51,6 @@ let store = createStore(
 )
 
 
-// const store = createStore(
-//   rootReducer, initialState,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-//   applyMiddleware(rMiddleware, thunk)
-// )
-
 //this.props.history.push('/notes')
 ReactDOM.render(
   <Provider store={store}>
@@ -67,8 +61,9 @@ ReactDOM.render(
         <Route path='/register' component={Register}></Route>
         <Route path='/notes' component={Note}></Route>
         <Route path='/add-notebook' component={NotebookForm}></Route>
-        <Route path='/notebook' component={Notebook}></Route>
         <Route path='/notebooks' component={Notebooks}></Route>
+        <Route path='/notebook/:notebookid' component={Notebook}></Route>
+        <Route path='/notebooks/:notebookid/notes/:noteid' component={Note} />
       </div>
     </Router>
   </Provider>,

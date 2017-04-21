@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    debugger
+    //debugger
     if (this.props.token) {
       this.props.setUser(this.props.token)
     }
@@ -27,9 +27,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Notebooks />
         <h1>Welcome to SimplePen</h1>
-        {(!!this.props.token) ? this.props.history.push('/notebook') :
+        {(!!this.props.token) ? this.props.history.push('/notebooks') :
           <div>
             <Register register={this.props.register}/>
             <Login login={this.props.login}/>

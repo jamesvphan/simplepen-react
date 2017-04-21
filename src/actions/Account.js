@@ -126,3 +126,43 @@ export const saveNote = (token, note, title) => {
    })
  }
 }
+
+export const loadNotebook = (token, notebookid) => {
+  debugger
+  return(dispatch) => {
+    axios
+    .get(`http://localhost:3001/notebooks/${notebookid}`, {
+      headers: {token: token}
+    })
+    .then((resp) => {
+      debugger
+      dispatch({
+        type: 'LOAD_NOTEBOOK',
+        notebook: resp.data
+      })
+    })
+    .catch((errors) => {
+      console.log(errors)
+    })
+  }
+}
+
+export const loadNote = (token, notebookid, noteid) => {
+  debugger
+  return(dispatch) => {
+    axios
+    .get(`http://localhost:3001/notebooks/${notebookid}/notes/${noteid}`, {
+      headers: {token: token}
+    })
+    .then((resp) => {
+      debugger
+      dispatch({
+        type: 'LOAD_NOTE',
+        notebook: resp.data
+      })
+    })
+    .catch((errors) => {
+      console.log(errors)
+    })
+  }
+}

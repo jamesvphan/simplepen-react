@@ -4,7 +4,6 @@ export default function manageAccountReducer(state = {
     {
       id: '',
       title: '',
-      description: '',
       notes: []
     }
   ],
