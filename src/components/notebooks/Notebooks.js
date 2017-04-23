@@ -20,7 +20,7 @@ class Notebooks extends Component {
   handleOnClick(ev) {
     debugger
     let notebook_id = ev.target.dataset.notebookid
-    this.props.history.push(`/notebooks/${notebook_id}`)
+    this.props.history.push(`/notebooks/${notebook_id}/notes`)
   }
 
   render(){

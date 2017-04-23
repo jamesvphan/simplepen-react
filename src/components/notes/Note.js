@@ -46,6 +46,7 @@ class Note extends Component {
 
   }
 	render(){
+    debugger
     let object = this.props.note.body
 
 		return(
