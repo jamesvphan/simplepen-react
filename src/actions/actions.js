@@ -166,3 +166,25 @@ export const loadNote = (token, notebookid, noteid) => {
     })
   }
 }
+
+
+export const addNote = (token, notebookId) => {
+  debugger
+  return(dispatch) => {
+    axios
+    .post(`http://localhost:3001/notebooks/${notebookId}/notes`, {
+      headers: {token: token},
+      notebookId: notebookId
+    })
+    .then((resp) => {
+      debugger
+      dispatch({
+        type: 'ADD_NOTE',
+        note: resp.data
+      })
+    })
+    .catch((errors) => {
+      console.log(errors)
+    })
+  }
+}

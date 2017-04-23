@@ -34,7 +34,7 @@ class NotePreview extends Component {
 
     const allNotesPreview = (
       <div>
-        <a href="" data-note-id={this.props.id} onClick={this.props.onClick}>{this.props.title}</a>
+        <a href="" data-note-id={this.props.id} onClick={this.props.onClick}>{this.props.id}{this.props.title}</a>
       </div>
     )
 

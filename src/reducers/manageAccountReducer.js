@@ -1,12 +1,7 @@
 
 export default function manageAccountReducer(state = {
-  notebooks: [
-    {
-      id: '',
-      title: '',
-      notes: []
-    }
-  ],
+  notebooks: [],
+  notes: [],
   id: '',
   username: '',
   email: ''
@@ -16,19 +11,26 @@ export default function manageAccountReducer(state = {
     case 'SET_USER':
       return {
         notebooks: action.user.notebooks,
+        notes: action.user.notes,
         id: action.user.id,
         username: action.user.username,
         email: action.user.email
       }
 
     case 'ADD_NOTEBOOK':
-    return Object.assign({}, state,  {
-      notebooks: state.notebooks.concat(action.notebook)
-    })
+      return Object.assign({}, state,  {
+        notebooks: state.notebooks.concat(action.notebook)
+      })
 
+    case 'ADD_NOTE':
+      return Object.assign({}, state, {
+        notes: [...state.notes, action.note]
+      })
     default:
     return state
   }
+
+
 }
 
 // this is the account, i keep an array of notebooks so that i can set it later when i load the user,
