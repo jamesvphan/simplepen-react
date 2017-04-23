@@ -60,9 +60,9 @@ ReactDOM.render(
         <Route path='/register' component={Register}></Route>
         <Route path='/notes' component={Note}></Route>
         <Route path='/add-notebook' component={NotebookForm}></Route>
-        <Route path='/notebooks' component={Notebooks}></Route>
-        <Route path='/notebooks/:notebookid' component={Notebook}></Route>
-        <Route path='/notebooks/:notebookid/notes/:noteid' component={NotePreview} />
+        <Route exact path='/notebooks' component={Notebooks}></Route>
+        <Route exact path='/notebooks/:notebookid/notes' component={Notebook}></Route>
+        <Route exact path='/notebooks/:notebookid/notes/:noteid' component={NotePreview} />
       </div>
     </Router>
   </Provider>,

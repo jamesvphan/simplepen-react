@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { loadNote } from '../../actions/actions'
+import Toolbar from '../Toolbar'
 
 class NotePreview extends Component {
   constructor() {
@@ -28,14 +29,30 @@ class NotePreview extends Component {
 
 
   render() {
+    debugger
+    let object = this.props.currentNote.body
+
     const allNotesPreview = (
       <div>
         <a href="" data-note-id={this.props.id} onClick={this.props.onClick}>{this.props.title}</a>
       </div>
     )
+
     const actualNote = (
-      <div>{this.note}</div>
+      <div>
+        <input type="text" value={this.props.currentNote.title} name="title" id="title" onChange={this.handleTitleChange} />
+				<Toolbar state={this.state}/>
+				<div
+          id="note"
+          className="description"
+          contentEditable="true"
+          onChange={this.handleOnChange}
+          dangerouslySetInnerHTML={{__html:object}} >
+        </div>
+
+			</div>
     )
+
     return (
       <div>
         {this.state.currentNote ? actualNote : allNotesPreview}
