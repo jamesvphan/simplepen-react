@@ -6,21 +6,21 @@ export const setToken = (token) => ({
 })
 
 export const setUser = (token) => {
-  debugger
+  //debugger
   return(dispatch) => {
     axios
     .post(`http://localhost:3001/user`, {
       headers: {token: token}
     })
     .then((resp) => {
-      debugger
+      //debugger
       dispatch({
         type: 'SET_USER',
         user: resp.data
       })
     })
     .catch((errors) => {
-      debugger
+      //debugger
       console.log(errors)
     })
   }
@@ -125,4 +125,44 @@ export const saveNote = (token, note, title) => {
      console.log(errors)
    })
  }
+}
+
+export const loadNotebook = (token, notebookid) => {
+  debugger
+  return(dispatch) => {
+    axios
+    .get(`http://localhost:3001/notebooks/${notebookid}`, {
+      headers: {token: token}
+    })
+    .then((resp) => {
+      debugger
+      dispatch({
+        type: 'LOAD_NOTEBOOK',
+        notebook: resp.data
+      })
+    })
+    .catch((errors) => {
+      console.log(errors)
+    })
+  }
+}
+
+export const loadNote = (token, notebookid, noteid) => {
+  debugger
+  return(dispatch) => {
+    axios
+    .get(`http://localhost:3001/notebooks/${notebookid}/notes/${noteid}`, {
+      headers: {token: token}
+    })
+    .then((resp) => {
+      debugger
+      dispatch({
+        type: 'LOAD_NOTE',
+        note: resp.data
+      })
+    })
+    .catch((errors) => {
+      console.log(errors)
+    })
+  }
 }
