@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addNote, boldText, loadNote } from '../../actions/Account'
+import { addNote, boldText, loadNote } from '../../actions/actions'
 import Toolbar from '../Toolbar'
 
 class Note extends Component {

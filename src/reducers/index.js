@@ -8,12 +8,10 @@ import manageAccountReducer from './manageAccountReducer'
 
 // Use combineReducer to export rootReducer
 const rootReducer = combineReducers({
-  note: noteReducer,
   session: manageSessionReducer,
   account: manageAccountReducer,
   notebook: notebookReducer,
-
-
+  note: noteReducer,
 })
 
 

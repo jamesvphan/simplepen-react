@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 //import axios from 'axios'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { setToken } from '../actions/Account.js'
+import { setToken } from '../actions/actions'
 
 class Register extends Component{
 	constructor(props) {

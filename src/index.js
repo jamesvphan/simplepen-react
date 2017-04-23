@@ -21,6 +21,7 @@ import App from './App';
 import Note from './components/notes/Note'
 import Notebook from './components/notebooks/Notebook'
 import Notebooks from './components/notebooks/Notebooks'
+import NotePreview from './components/notes/NotePreview'
 import Login from './components/Login'
 import NotebookForm from './components/notebooks/NotebookForm'
 import Register from './components/Register'
@@ -50,8 +51,6 @@ let store = createStore(
   composeWithDevTools(applyMiddleware(thunk, rMiddleware))
 )
 
-
-//this.props.history.push('/notes')
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
@@ -62,8 +61,8 @@ ReactDOM.render(
         <Route path='/notes' component={Note}></Route>
         <Route path='/add-notebook' component={NotebookForm}></Route>
         <Route path='/notebooks' component={Notebooks}></Route>
-        <Route path='/notebook/:notebookid' component={Notebook}></Route>
-        <Route path='/notebooks/:notebookid/notes/:noteid' component={Note} />
+        <Route path='/notebooks/:notebookid' component={Notebook}></Route>
+        <Route path='/notebooks/:notebookid/notes/:noteid' component={NotePreview} />
       </div>
     </Router>
   </Provider>,

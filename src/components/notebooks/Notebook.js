@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { loadNotebook } from '../../actions/Account'
-import Note from '../notes/Note'
+import { loadNotebook } from '../../actions/actions'
+// import Note from '../notes/Note'
 import NotePreview from '../notes/NotePreview'
 
 class Notebook extends Component {
@@ -18,22 +18,25 @@ class Notebook extends Component {
   }
 
   componentWillMount() {
-    debugger
-    let notebook_id = this.props.match.params.notebookid
-    if (notebook_id) {
+    // debugger
+    let checkNotebookId = this.props.match
+    let notebook_id
+    if (checkNotebookId) {
+      notebook_id = checkNotebookId.params.notebookid
       this.setState({
         showNotebook: notebook_id
       })
+      this.props.loadNotebook(this.props.token, notebook_id)
     }
-    this.props.loadNotebook(this.props.token, notebook_id)
   }
 
 
   handleAddNote(){
-    this.props.history.push('/notes')
+    //this.props.history.push('/notes')
   }
 
   handleOnClick(ev) {
+    debugger
     let note_id = ev.target.dataset.noteId
     this.props.history.push(`/notebooks/${this.state.showNotebook}/notes/${note_id}`)
   }

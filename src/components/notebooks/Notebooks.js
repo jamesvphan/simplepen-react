@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Notebook from './Notebook'
-import { setToken, addUser, login, setUser } from '../../actions/Account'
+import { setUser } from '../../actions/actions'
 
 class Notebooks extends Component {
   constructor(props){
@@ -11,16 +11,16 @@ class Notebooks extends Component {
     this.handleOnClick = this.handleOnClick.bind(this)
   }
 
-  handleOnClick(ev) {
-    debugger
-    let notebook_id = ev.target.dataset.notebookid
-    this.props.history.push(`/notebook/${notebook_id}`)
-  }
-
   componentWillMount() {
     if (this.props.token) {
       this.props.setUser(this.props.token)
     }
+  }
+
+  handleOnClick(ev) {
+    debugger
+    let notebook_id = ev.target.dataset.notebookid
+    this.props.history.push(`/notebooks/${notebook_id}`)
   }
 
   render(){

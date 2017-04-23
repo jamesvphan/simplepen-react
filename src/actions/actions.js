@@ -6,21 +6,21 @@ export const setToken = (token) => ({
 })
 
 export const setUser = (token) => {
-  debugger
+  //debugger
   return(dispatch) => {
     axios
     .post(`http://localhost:3001/user`, {
       headers: {token: token}
     })
     .then((resp) => {
-      debugger
+      //debugger
       dispatch({
         type: 'SET_USER',
         user: resp.data
       })
     })
     .catch((errors) => {
-      debugger
+      //debugger
       console.log(errors)
     })
   }
@@ -158,7 +158,7 @@ export const loadNote = (token, notebookid, noteid) => {
       debugger
       dispatch({
         type: 'LOAD_NOTE',
-        notebook: resp.data
+        note: resp.data
       })
     })
     .catch((errors) => {
