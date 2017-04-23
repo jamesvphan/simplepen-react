@@ -102,29 +102,25 @@ export function addToolbar(state){
   }
 }
 
-
-export const saveNote = (token, note, title) => {
+export const saveNote = (token, data) => {
   debugger
- return(dispatch) => {
-   axios
-   .post(`http://localhost:3001/notes`, {
-     headers: {token: token},
-     note: {
-       body: note,
-       title: title
-     }
-   })
-   .then((resp) => {
-     debugger
-     dispatch({
-       type: 'SAVE_NOTE',
-       note: resp.data
-     })
-   })
-   .catch((errors) => {
-     console.log(errors)
-   })
- }
+
+  return(dispatch) => {
+    axios
+    .patch(`http://localhost:3001/notebooks/${data.notebookId}/notes/${data.noteId}`, data, {
+      headers: {token: token}
+    })
+    .then((resp) => {
+      debugger
+      dispatch({
+        type: 'SAVE_NOTE',
+        note: resp.data
+      })
+    })
+    .catch((errors) => {
+      console.log(errors)
+    })
+  }
 }
 
 export const loadNotebook = (token, notebookid) => {

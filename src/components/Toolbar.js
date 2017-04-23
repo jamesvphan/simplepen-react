@@ -24,48 +24,26 @@ class Toolbar extends Component {
 
 	handleSave(){
 		debugger
-		let title = document.getElementById("title").value
-		let els = document.getElementById("note").innerHTML
-		this.props.saveNote(this.props.token, els, title)
+		let notebookId = this.props.currentNote.notebook_id
+		let noteId = this.props.currentNote.id
+		let title = document.getElementById("title").innerText
+		let note = document.getElementById("note").innerHTML
+		let data = {
+			title: title,
+			note: note,
+			notebookId: notebookId,
+			noteId: noteId
+		}
+		this.props.saveNote(this.props.token, data)
 	}
 
   handleOnBold(){
 		document.execCommand("bold", false, '')
-    //
-		// let addBold = `<b>${highlightedText}</b>`
-		//
-		// var sel, range;
-		// if (window.getSelection) {
-		// 	sel = window.getSelection();
-		// 	console.log(sel)
-		// 	if (sel.rangeCount) {
-		// 		range = sel.getRangeAt(0);
-		// 		range.deleteContents();
-		//
-		// 		range.insertNode(document.createTextNode(`<b>${highlightedText}</b>`));
-		// 	}
-		// }
-		// let els = document.getElementById("note").innerHTML //.children
-		//
-		// let test = els.search("<b>")
-		//
-		// let newThing
-		// if (test === -1 ){
-		// 	newThing = els.replace(/&lt;b&gt;/g , "<b>").replace('&lt;/b&gt;', '</b>')
-		// } else {
-		// 	newThing = els.replace('<b>&lt;b&gt;', '').replace('&lt;/b&gt;</b>', '')
-		// }
-		// this.props.boldText({update: newThing})
-
   }
 
 	handleOnItalics(){
 		document.execCommand("italic", false, '')
-	  }
-
-
-
-
+	}
 
 
 	render(){
@@ -114,5 +92,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return {token: state.session.token}
+  return {
+		token: state.session.token,
+		currentNotebook: state.notebook,
+		currentNote: state.note
+	}
 }

@@ -9,8 +9,13 @@ class NotePreview extends Component {
     super()
 
     this.state = {
-      currentNote: null
+      currentNote: null,
+      title: '',
+      body: ''
     }
+
+    this.handleOnChange = this.handleOnChange.bind(this)
+    //this.handleTitleChange = this.handleTitleChange.bind(this)
   }
 
   componentWillMount() {
@@ -27,10 +32,17 @@ class NotePreview extends Component {
     }
   }
 
+  handleOnChange(ev){
+    let name = ev.target.name
+    this.setState({
+      [name]: ev.target.value
+    })
+  }
 
   render() {
-    debugger
+    //debugger
     let object = this.props.currentNote.body
+    let title = this.props.currentNote.title
 
     const allNotesPreview = (
       <div>
@@ -40,14 +52,22 @@ class NotePreview extends Component {
 
     const actualNote = (
       <div>
-        <input type="text" value={this.props.currentNote.title} name="title" id="title" onChange={this.handleTitleChange} />
+
+        <div
+          id="title"
+          contentEditable="true"
+          onChange={this.handleOnChange}
+          dangerouslySetInnerHTML={{__html:title}}
+        >
+        </div>
 				<Toolbar state={this.state}/>
 				<div
           id="note"
           className="description"
           contentEditable="true"
           onChange={this.handleOnChange}
-          dangerouslySetInnerHTML={{__html:object}} >
+          dangerouslySetInnerHTML={{__html:object}}
+        >
         </div>
 
 			</div>
