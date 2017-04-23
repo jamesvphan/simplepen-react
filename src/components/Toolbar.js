@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addToolbar } from '../actions/toolbarAction'
+// import { addToolbar } from '../actions/toolbarAction'
 import { boldText } from '../actions/noteActions'
 import { italicsText } from '../actions/noteActions'
-import { saveNote } from '../actions/Account'
+import { saveNote } from '../actions/actions'
 
 class Toolbar extends Component {
 	constructor() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addNotebook, setUser } from '../../actions/Account'
+import { addNotebook, setUser } from '../../actions/actions'
 
 
 class NotebookForm extends Component {
