@@ -76,6 +76,15 @@ export const login = (state) => {
   }
 }
 
+
+export const logout = (token) => {
+  window.localStorage.removeItem("token")
+  return {
+    type: "LOGOUT"
+  }
+  }
+
+
 export const addNotebook = (token, notebook) => {
  return(dispatch) => {
    axios

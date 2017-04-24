@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { loadNotebook, addNote, deleteNotebook } from '../../actions/actions'
+import { loadNotebook, addNote, deleteNotebook, logout } from '../../actions/actions'
 // import Note from '../notes/Note'
 import NotePreview from '../notes/NotePreview'
 
@@ -39,9 +39,6 @@ class Notebook extends Component {
   }
 
 
-
-
-
   handleOnClick(ev) {
     debugger
     let note_id = ev.target.dataset.noteId
@@ -69,6 +66,7 @@ class Notebook extends Component {
     return (
       <div>
         {this.state.showNotebook ? notesPreview : notebookPreview}
+
       </div>
     )
   }
@@ -85,7 +83,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     loadNotebook: loadNotebook,
     addNote: addNote,
-    deleteNotebok: deleteNotebook
+    deleteNotebok: deleteNotebook,
+    logout: logout
   }, dispatch)
 }
 
