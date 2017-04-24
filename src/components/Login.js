@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 // import axios from 'axios'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { setToken } from '../actions/actions'
+import { setToken, addUser, login, setUser } from '../actions/actions'
 
 class Login extends Component{
 	constructor(props) {
@@ -31,22 +31,34 @@ class Login extends Component{
 	render(){
 		return(
 			<div>
-				<form onSubmit={this.handleSubmit}>
-					Username:<input type="text" onChange={this.handleOnChange} name="username" /> <br/>
-					Password:<input type="password" onChange={this.handleOnChange} name="password" /> <br/>
-					<input type="submit" value="Log In"/>
+
+
+					<div className="wrapper">
+						<h1 className="logo">SimplePen  <span className="glyphicon glyphicon-pencil"></span></h1><br></br>
+				<form className="form-signin" onSubmit={this.handleSubmit}>
+					<input type="text" onChange={this.handleOnChange}  className="form-control" name="username" placeholder="Username" required="" autoFocus=""/> <br></br>
+					<input type="password" onChange={this.handleOnChange} className="form-control" name="password" placeholder="Password" required=""/> <br></br>
+
+					<button className="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 				</form>
 			</div>
+		</div>
 		);
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({setToken: setToken}, dispatch)
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    setToken: setToken,
+    register: addUser,
+    login: login,
+    setUser: setUser
+  }, dispatch)
 }
 
 function mapStateToProps(state) {
   return {values: state.values}
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
