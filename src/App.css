@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -25,4 +26,90 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.about {
+  background-color: #b2cceb;
+  border-radius: 15px;
+}
+
+.image-about {
+  width: 250px;
+  height: 250px;
+  border-radius: 100%;
+  margin: 45px 0;
+}
+
+i {
+  color: black;
+  margin: 30px 10px;
+}
+
+div.back.about > span {
+  display: inline-block;
+  font-family: sans-serif;
+  margin-top: 40px;
+}
+
+#title {
+  font-size: 36px;
+}
+
+#personName {
+  background-color: #d8d9cf;
+  text-align: center;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  padding-top: 30px;
+  padding-bottom: 70px;
+  font-family: sans-serif;
+}
+
+/* entire container, keeps perspective */
+.container {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.flip-container {
+	perspective: 1000px;
+  display: inline-block;
+  margin: 0 10px;
+  margin-top: 10px;
+}
+	/* flip the pane when hovered */
+.flip-container:hover .flipper, .flip-container.hover .flipper {
+	transform: rotateY(180deg);
+}
+
+.flip-container, .front, .back {
+	width: 320px;
+	height: 480px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+  position: absolute;
+
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
 }

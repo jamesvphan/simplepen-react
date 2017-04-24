@@ -25,6 +25,7 @@ import NotePreview from './components/notes/NotePreview'
 import Login from './components/Login'
 import NotebookForm from './components/notebooks/NotebookForm'
 import Register from './components/Register'
+import About from './components/About'
 import { composeWithDevTools } from 'redux-devtools-extension';
 //import axios from 'axios'
 import './index.css';
@@ -58,6 +59,7 @@ ReactDOM.render(
         <Route exact path='/' component={App}></Route>
         <Route path='/login' component={Login}></Route>
         <Route path='/register' component={Register}></Route>
+        <Route exact path='/about' component={About}></Route>
         <Route path='/notes' component={Note}></Route>
         <Route path='/add-notebook' component={NotebookForm}></Route>
         <Route exact path='/notebooks' component={Notebooks}></Route>
