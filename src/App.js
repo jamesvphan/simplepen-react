@@ -27,7 +27,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Welcome to SimplePen</h1>
+        <h1>This is SimplePen</h1>
         {(!!this.props.token) ? this.props.history.push('/notebooks') :
           <div>
             <Register register={this.props.register}/>
