@@ -113,7 +113,7 @@ div.back.about > span {
 /* back, initially hidden pane */
 .back {
 	transform: rotateY(180deg);
-=======
+}
 body {
 	background: #F8F8FF !important;
 }

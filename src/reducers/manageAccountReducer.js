@@ -22,10 +22,25 @@ export default function manageAccountReducer(state = {
         notebooks: state.notebooks.concat(action.notebook)
       })
 
+
+    case 'DELETE_NOTEBOOK':
+      const notebooks = state.notebooks.filter(notebook => notebook.id !== action.id);
+      return Object.assign({}, state, {
+        notebooks: notebooks
+      })
+
     case 'ADD_NOTE':
       return Object.assign({}, state, {
         notes: [...state.notes, action.note]
       })
+
+
+    case 'DELETE_NOTE':
+      const notes = state.notes.filter(note => note.id !== action.id);
+      return Object.assign({}, state, {
+        notes
+    })
+
     default:
     return state
   }

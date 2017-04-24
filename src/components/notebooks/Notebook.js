@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { loadNotebook, addNote } from '../../actions/actions'
+import { loadNotebook, addNote, deleteNotebook } from '../../actions/actions'
 // import Note from '../notes/Note'
 import NotePreview from '../notes/NotePreview'
 
@@ -38,6 +38,10 @@ class Notebook extends Component {
     this.props.addNote(this.props.token, notebookId)
   }
 
+
+
+
+
   handleOnClick(ev) {
     debugger
     let note_id = ev.target.dataset.noteId
@@ -47,6 +51,7 @@ class Notebook extends Component {
   render(){
     const notebookPreview = (
       <div>
+        <button onClick={this.props.onDeleteNotebook} data-notebookid={this.props.id}>Delete notebook</button>
         <button data-notebookid={this.props.id}  onClick={this.handleAddNote}>Add a note</button>
         <a href="#" data-notebookid={this.props.id} onClick={this.props.onClick}>{this.props.title}</a>
       </div>
@@ -79,7 +84,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     loadNotebook: loadNotebook,
-    addNote: addNote
+    addNote: addNote,
+    deleteNotebok: deleteNotebook
   }, dispatch)
 }
 
