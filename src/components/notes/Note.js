@@ -45,6 +45,7 @@ class Note extends Component {
   handleOnClick(){
 
   }
+  
 	render(){
     debugger
     let object = this.props.note.body
