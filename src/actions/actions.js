@@ -6,21 +6,20 @@ export const setToken = (token) => ({
 })
 
 export const setUser = (token) => {
-  //debugger
   return(dispatch) => {
     axios
     .post(`http://localhost:3001/user`, {
       headers: {token: token}
     })
     .then((resp) => {
-      //debugger
+
       dispatch({
         type: 'SET_USER',
         user: resp.data
       })
     })
     .catch((errors) => {
-      //debugger
+
       console.log(errors)
     })
   }
@@ -29,7 +28,6 @@ export const setUser = (token) => {
 
 // Make request to Rails API to create a new user, then dispatch LOGIN action
 export const addUser = (state) => {
- debugger
   return(dispatch) => {
 
     axios
@@ -42,7 +40,7 @@ export const addUser = (state) => {
       }
     })
     .then((resp) => {
-      debugger
+
       window.localStorage.setItem('token', resp.data.jwt)
       dispatch({
         type: 'LOGIN',
@@ -50,7 +48,7 @@ export const addUser = (state) => {
       })
     })
     .catch(resp => {
-      debugger
+
     })
   }
 }
@@ -93,7 +91,7 @@ export const addNotebook = (token, notebook) => {
      notebook: notebook
    })
    .then((resp) => {
-     debugger
+
      dispatch({
        type: 'ADD_NOTEBOOK',
        notebook: resp.data
@@ -107,7 +105,6 @@ export const addNotebook = (token, notebook) => {
 
 
 export const deleteNotebook = (token, notebookId) => {
-  debugger
  return(dispatch) => {
    axios
    .delete(`http://localhost:3001/notebooks/${notebookId}`, {
@@ -115,14 +112,14 @@ export const deleteNotebook = (token, notebookId) => {
      notebookId: notebookId
    })
    .then((resp) => {
-     debugger
+
      dispatch({
        type: 'DELETE_NOTEBOOK',
        notebook: resp.data
      })
    })
    .catch((errors) => {
-     debugger
+
      console.log(errors)
    })
  }
@@ -130,7 +127,7 @@ export const deleteNotebook = (token, notebookId) => {
 
 
 // export const deleteNote = (token, data) => {
-//   debugger
+//
 //   return(dispatch) => {
 //     axios
 //     .delete(`http://localhost:3001/notebooks/${data.notebookId}/notes/${data.noteId}`, {
@@ -138,14 +135,14 @@ export const deleteNotebook = (token, notebookId) => {
 //       notebookId: notebookId
 //     })
 //     .then((resp) => {
-//       debugger
+//
 //       dispatch({
 //         type: 'DELETE_NOTE',
 //         note: resp.data
 //       })
 //     })
 //     .catch((errors) => {
-//       debugger
+//
 //       console.log(errors)
 //     })
 //   }
@@ -159,7 +156,6 @@ export function addToolbar(state){
 }
 
 export const saveNote = (token, data) => {
-  debugger
 
   return(dispatch) => {
     axios
@@ -167,7 +163,7 @@ export const saveNote = (token, data) => {
       headers: {token: token}
     })
     .then((resp) => {
-      debugger
+
       dispatch({
         type: 'SAVE_NOTE',
         note: resp.data
@@ -180,14 +176,13 @@ export const saveNote = (token, data) => {
 }
 
 export const loadNotebook = (token, notebookid) => {
-  debugger
   return(dispatch) => {
     axios
     .get(`http://localhost:3001/notebooks/${notebookid}`, {
       headers: {token: token}
     })
     .then((resp) => {
-      debugger
+
       dispatch({
         type: 'LOAD_NOTEBOOK',
         notebook: resp.data
@@ -200,14 +195,12 @@ export const loadNotebook = (token, notebookid) => {
 }
 
 export const loadNote = (token, notebookid, noteid) => {
-  debugger
   return(dispatch) => {
     axios
     .get(`http://localhost:3001/notebooks/${notebookid}/notes/${noteid}`, {
       headers: {token: token}
     })
     .then((resp) => {
-      debugger
       dispatch({
         type: 'LOAD_NOTE',
         note: resp.data
@@ -221,7 +214,6 @@ export const loadNote = (token, notebookid, noteid) => {
 
 
 export const addNote = (token, notebookId) => {
-  debugger
   return(dispatch) => {
     axios
     .post(`http://localhost:3001/notebooks/${notebookId}/notes`, {
@@ -229,7 +221,6 @@ export const addNote = (token, notebookId) => {
       notebookId: notebookId
     })
     .then((resp) => {
-      debugger
       dispatch({
         type: 'ADD_NOTE',
         note: resp.data

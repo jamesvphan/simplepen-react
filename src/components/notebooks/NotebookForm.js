@@ -42,8 +42,7 @@ class NotebookForm extends Component {
     return(
       <div>
         <form onSubmit={this.handleOnSubmit}>
-          <input type="text" onChange={this.handleOnChange} name='title'/>
-          <input type="text" onChange={this.handleOnChange} name='description'/>
+          Title<input type="text" onChange={this.handleOnChange} name='title'/>
           <input type="submit"/>
         </form>
       </div>

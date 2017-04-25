@@ -8,7 +8,6 @@ export default function notebookReducer(state = {
 }, action) {
   switch (action.type) {
     case "LOAD_NOTEBOOK":
-    debugger
       return Object.assign({}, state, {
         id: action.notebook.id,
         title: action.notebook.title,
