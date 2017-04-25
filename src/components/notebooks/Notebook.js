@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { loadNotebook, addNote, deleteNotebook } from '../../actions/actions'
+import { loadNotebook, addNote, deleteNotebook, logout } from '../../actions/actions'
 // import Note from '../notes/Note'
 import NotePreview from '../notes/NotePreview'
+import '../../test.css'
 
 class Notebook extends Component {
   constructor(props){
@@ -18,7 +19,6 @@ class Notebook extends Component {
   }
 
   componentWillMount() {
-    // debugger
     let checkNotebookId = this.props.match
     let notebook_id
     if (checkNotebookId) {
@@ -33,17 +33,12 @@ class Notebook extends Component {
 
   handleAddNote(ev){
     ev.preventDefault()
-    debugger
     let notebookId = ev.target.dataset.notebookid
     this.props.addNote(this.props.token, notebookId)
   }
 
 
-
-
-
   handleOnClick(ev) {
-    debugger
     let note_id = ev.target.dataset.noteId
     this.props.history.push(`/notebooks/${this.state.showNotebook}/notes/${note_id}`)
   }
@@ -51,24 +46,61 @@ class Notebook extends Component {
   render(){
     const notebookPreview = (
       <div>
-        <button onClick={this.props.onDeleteNotebook} data-notebookid={this.props.id}>Delete notebook</button>
         <button data-notebookid={this.props.id}  onClick={this.handleAddNote}>Add a note</button>
-        <a href="#" data-notebookid={this.props.id} onClick={this.props.onClick}>{this.props.title}</a>
+        <div className="container-class">
+          <div className="notebook">
+            <div className="outer-post-it">
+              <div className="note">
+                {this.props.title}
+              </div>
+
+            </div>
+            <div className="inner-post-its">
+              <div className="red-post-it"></div>
+            </div>
+            <div className="holes">
+              <div></div><div></div><div></div><div></div><div></div>
+              <div></div><div></div><div></div><div></div><div></div>
+            </div>
+            <div className="spiral">
+              <div></div><div></div><div></div><div></div><div></div>
+              <div></div><div></div><div></div><div></div><div></div>
+            </div>
+            <div
+              className="brand"
+              onClick={this.props.onDeleteNotebook}
+              data-notebookid={this.props.id}
+            >
+              <div className="letter">X</div>
+            </div>
+            <a href=""
+              data-notebookid={this.props.id}
+              onClick={this.props.onClick}
+              className="notebook-links"
+            >
+              Enter
+            </a>
+          </div>
+        </div>
       </div>
     )
-    debugger
+
+
+    //debugger
     const notesPreview = this.props.currentNotebook.notes.map((note, index) => {
       return <NotePreview
         title={note.title}
+        body={note.body}
         key={index}
         id={note.id}
         onClick={this.handleOnClick}
       />
     })
-    debugger
+
     return (
-      <div>
+      <div className="note-container-test">
         {this.state.showNotebook ? notesPreview : notebookPreview}
+
       </div>
     )
   }
@@ -85,7 +117,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     loadNotebook: loadNotebook,
     addNote: addNote,
-    deleteNotebok: deleteNotebook
+    deleteNotebok: deleteNotebook,
+    logout: logout
   }, dispatch)
 }
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { loadNote } from '../../actions/actions'
 import Toolbar from '../Toolbar'
+import '../../App.css'
 
 class NotePreview extends Component {
   constructor() {
@@ -23,7 +24,6 @@ class NotePreview extends Component {
   }
 
   componentWillMount() {
-    debugger
     let checkNoteId = this.props.match
     let note_id
     if (checkNoteId) {
@@ -84,9 +84,31 @@ class NotePreview extends Component {
     let object = this.props.currentNote.body
     let title = this.props.currentNote.title
 
+
     const allNotesPreview = (
-      <div>
-        <a href="" data-note-id={this.props.id} onClick={this.props.onClick}>{this.props.id}{this.props.title}</a>
+      <div id="note-sticky" onClick={this.props.onClick} data-note-id={this.props.id}>
+        <div className="lines">
+        	<span className="horizontal" data-note-id={this.props.id}>
+        		<span data-note-id={this.props.id}></span>
+            <span data-note-id={this.props.id}></span>
+            <span data-note-id={this.props.id}></span>
+        		<span data-note-id={this.props.id}></span>
+            <span data-note-id={this.props.id}></span>
+            <span data-note-id={this.props.id}></span>
+        		<span data-note-id={this.props.id}></span>
+        	</span>
+        	<span className="vertical">
+        		<span></span><span></span>
+        	</span>
+        </div>
+        <div className="sticky" >
+          <div className="inner">
+            <span className="scratch"></span>
+            <div className="paper" data-note-id={this.props.id}>
+              <div style={{textDecoration:"underline"}}>{this.props.title}</div>
+            </div>
+          </div>
+        </div>
       </div>
     )
 
@@ -132,7 +154,7 @@ class NotePreview extends Component {
     )
 
     return (
-      <div>
+      <div className="note-container-test">
         {this.state.currentNote ? actualNote : allNotesPreview}
       </div>
     )

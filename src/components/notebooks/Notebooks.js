@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Notebook from './Notebook'
-import { setUser, deleteNotebook } from '../../actions/actions'
+import { setUser, deleteNotebook, logout } from '../../actions/actions'
 
 class Notebooks extends Component {
   constructor(props){
@@ -10,6 +10,7 @@ class Notebooks extends Component {
 
     this.handleOnClick = this.handleOnClick.bind(this)
     this.handleDeleteNotebook = this.handleDeleteNotebook.bind(this)
+    this.logOut = this.logOut.bind(this)
   }
 
   componentWillMount() {
@@ -19,7 +20,6 @@ class Notebooks extends Component {
   }
 
   handleOnClick(ev) {
-    debugger
     let notebook_id = ev.target.dataset.notebookid
     this.props.history.push(`/notebooks/${notebook_id}/notes`)
   }
@@ -33,10 +33,13 @@ class Notebooks extends Component {
 
   handleDeleteNotebook(ev){
     ev.preventDefault()
-    debugger
     let notebookId = ev.target.dataset.notebookid
     this.props.deleteNotebook(this.props.token, notebookId)
   }
+
+  logOut(){
+    this.props.logout()
+}
 
   render(){
     const notebooks = this.props.notebooks.map((notebook, index) => {
@@ -44,6 +47,7 @@ class Notebooks extends Component {
     })
     return (
       <div>
+        <button onClick={this.logOut}>Logout</button>
         {notebooks}
       </div>
     )
@@ -60,7 +64,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setUser: setUser,
-    deleteNotebook: deleteNotebook
+    deleteNotebook: deleteNotebook,
+    logout: logout
   }, dispatch)
 }
 
