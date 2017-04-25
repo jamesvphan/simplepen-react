@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Notebook from './Notebook'
+import NotebookForm from './NotebookForm'
 import { setUser, deleteNotebook, logout } from '../../actions/actions'
 
 class Notebooks extends Component {
@@ -38,7 +39,9 @@ class Notebooks extends Component {
   }
 
   logOut(){
+    debugger
     this.props.logout()
+    this.props.history.push('/')
 }
 
   render(){
@@ -48,6 +51,7 @@ class Notebooks extends Component {
     return (
       <div>
         <button onClick={this.logOut}>Logout</button>
+        <NotebookForm />
         {notebooks}
       </div>
     )

@@ -12,7 +12,6 @@ class NotebookForm extends Component {
 
     this.state = {
       title: '',
-      description: '',
     }
 
     this.handleOnSubmit = this.handleOnSubmit.bind(this)
@@ -20,14 +19,13 @@ class NotebookForm extends Component {
   }
 
   componentWillMount() {
-      debugger
-      if (this.props.token) {
-        this.props.setUser(this.props.token)
-      }
+    if (this.props.token) {
+      this.props.setUser(this.props.token)
     }
+  }
+
   handleOnSubmit(ev){
     ev.preventDefault()
-    debugger
     this.props.addNotebook(this.props.token, this.state)
   }
 
@@ -43,7 +41,7 @@ class NotebookForm extends Component {
       <div>
         <form onSubmit={this.handleOnSubmit}>
           Title<input type="text" onChange={this.handleOnChange} name='title'/>
-          <input type="submit"/>
+          <input type="submit" value="Add Notebook"/>
         </form>
       </div>
     )

@@ -39,6 +39,7 @@ let initialState = {
   },
   account: {
     notebooks: [],
+    notes: [],
     id: '',
     username: '',
     email: ''

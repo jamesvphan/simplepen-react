@@ -30,11 +30,12 @@ class Notebook extends Component {
     }
   }
 
-
   handleAddNote(ev){
     ev.preventDefault()
     let notebookId = ev.target.dataset.notebookid
     this.props.addNote(this.props.token, notebookId)
+    let last = this.props.currentNotebook.notes.length - 1
+    this.props.history.push(`/notebooks/${this.state.showNotebook}/notes/${this.props.currentNotebook.notes[last].id}`)
   }
 
 
@@ -85,8 +86,6 @@ class Notebook extends Component {
       </div>
     )
 
-
-    //debugger
     const notesPreview = this.props.currentNotebook.notes.map((note, index) => {
       return <NotePreview
         title={note.title}
@@ -99,8 +98,8 @@ class Notebook extends Component {
 
     return (
       <div className="note-container-test">
+        <button data-notebookid={this.props.currentNotebook.id}  onClick={this.handleAddNote}>Add a note</button>
         {this.state.showNotebook ? notesPreview : notebookPreview}
-
       </div>
     )
   }

@@ -45,6 +45,7 @@ class NotePreview extends Component {
 
 
     const allNotesPreview = (
+
       <div id="note-sticky" onClick={this.props.onClick} data-note-id={this.props.id}>
         <div className="lines">
         	<span className="horizontal" data-note-id={this.props.id}>
@@ -96,6 +97,7 @@ class NotePreview extends Component {
 
     return (
       <div className="note-container-test">
+        {/* <button data-notebookid={this.props.id}  onClick={this.handleAddNote}>Delete a note (does not work)</button> */}
         {this.state.currentNote ? actualNote : allNotesPreview}
       </div>
     )
