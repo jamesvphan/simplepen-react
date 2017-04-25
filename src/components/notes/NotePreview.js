@@ -46,12 +46,16 @@ class NotePreview extends Component {
 
 
     const allNotesPreview = (
-      <div id="note" onClick={this.props.onClick} data-note-id={this.props.id}>
+      <div id="note-sticky" onClick={this.props.onClick} data-note-id={this.props.id}>
         <div className="lines">
         	<span className="horizontal" data-note-id={this.props.id}>
-        		<span></span><span></span><span></span>
-        		<span></span><span></span><span></span>
-        		<span></span>
+        		<span data-note-id={this.props.id}></span>
+            <span data-note-id={this.props.id}></span>
+            <span data-note-id={this.props.id}></span>
+        		<span data-note-id={this.props.id}></span>
+            <span data-note-id={this.props.id}></span>
+            <span data-note-id={this.props.id}></span>
+        		<span data-note-id={this.props.id}></span>
         	</span>
         	<span className="vertical">
         		<span></span><span></span>
@@ -60,10 +64,8 @@ class NotePreview extends Component {
         <div className="sticky" >
           <div className="inner">
             <span className="scratch"></span>
-            <div className="paper" >
-              <p>
-              	{this.props.title}
-              </p>
+            <div className="paper" data-note-id={this.props.id}>
+              {this.props.title}
             </div>
           </div>
         </div>
@@ -94,7 +96,7 @@ class NotePreview extends Component {
     )
 
     return (
-      <div>
+      <div className="note-container-test">
         {this.state.currentNote ? actualNote : allNotesPreview}
       </div>
     )

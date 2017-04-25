@@ -49,8 +49,8 @@ class Notebooks extends Component {
     })
     return (
       <div>
-        {notebooks}
         <button onClick={this.logOut}>Logout</button>
+        {notebooks}
       </div>
     )
   }

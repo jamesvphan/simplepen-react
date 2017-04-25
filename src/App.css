@@ -166,16 +166,12 @@ body {
 	}
 }
 
+.note-container-test {
+  display: inline-block;
+  margin: 0 auto;
+}
 
-/* */
-/*
- * Copyright (c) 2012-2013 Arbaoui Mehdi
- * PSD : http://pixelsdaily.com/resources/photoshop/psds/sticky-notepaper-psd/
- * http://www.depotwebdesigner.com
- */
-
-
-#note {
+#note-sticky {
 	display:block;
 	width:340px;
 	height:240px;
@@ -244,6 +240,14 @@ body {
 	background:#fdfbf0;
 	padding:0 5px;
 	font-size:17px;
+}
+
+.paper {
+  width: 340px;
+  height: 240px;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
 }
 
 .scratch {
