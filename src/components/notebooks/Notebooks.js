@@ -9,7 +9,6 @@ class Notebooks extends Component {
     super(props)
 
     this.handleOnClick = this.handleOnClick.bind(this)
-    this.handleDeleteNotebook = this.handleDeleteNotebook.bind(this)
     this.logOut = this.logOut.bind(this)
   }
 
@@ -24,13 +23,7 @@ class Notebooks extends Component {
     let notebook_id = ev.target.dataset.notebookid
     this.props.history.push(`/notebooks/${notebook_id}/notes`)
   }
-  //
-  // handleDeleteNote(ev){
-  //   ev.preventDefault()
-  //   debugger
-  //   let notebookId = ev.target.dataset.notebookid
-  //   this.props.deleteNote(this.props.token, notebookId)
-  // }
+
 
   handleDeleteNotebook(ev){
     ev.preventDefault()

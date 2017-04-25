@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 // // import { addToolbar } from '../actions/toolbarAction'
 // import { boldText } from '../actions/noteActions'
 // import { italicsText } from '../actions/noteActions'
-import { saveNote } from '../actions/actions'
+import { saveNote, deleteNote } from '../actions/actions'
 
 class Toolbar extends Component {
 	constructor() {
@@ -15,6 +15,7 @@ class Toolbar extends Component {
     this.handleOnBold = this.handleOnBold.bind(this)
     this.handleOnItalics = this.handleOnItalics.bind(this)
 		this.handleSave = this.handleSave.bind(this)
+		this.handleDeleteNote = this.handleDeleteNote.bind(this)
 
 	}
 
@@ -46,12 +47,22 @@ class Toolbar extends Component {
 	}
 
 
+  handleDeleteNote(){
+		debugger
+		let notebookId = this.props.currentNote.notebook_id
+		let noteId = this.props.currentNote.id
+    this.props.deleteNote(this.props.token, notebookId, noteId)
+		this.props.history.push(`/notebooks/${notebookId}/notes`)
+  }
+
+
+
 	render(){
 		return(
 			<div className="ui">
         		<div className="wrapper">
   					<div className="top editing">
-  						
+
   						<button className="fullscreen useicons" title="Toggle fullscreen">
              	 			<span className="glyphicon glyphicon-fullscreen"></span>
             			</button>
@@ -71,6 +82,9 @@ class Toolbar extends Component {
   						<button onClick={this.handleSave} className="save useicons" title="Save Text">
               				<span className="glyphicon glyphicon-floppy-disk"></span>
             			</button>
+									<button onClick={this.handleDeleteNote} className="save useicons" title="Save Text">
+													<span className="glyphicon glyphicon-remove"></span>
+											</button>
   					</div>
 
 	  				<div className="bottom">
@@ -89,6 +103,7 @@ function mapDispatchToProps(dispatch) {
 		// boldText: boldText,
 		// italicsText: italicsText,
 		saveNote: saveNote,
+		deleteNote: deleteNote
 	}, dispatch)
 }
 

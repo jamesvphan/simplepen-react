@@ -129,29 +129,6 @@ export const deleteNotebook = (token, notebookId) => {
 }
 
 
-// export const deleteNote = (token, data) => {
-//   debugger
-//   return(dispatch) => {
-//     axios
-//     .delete(`http://localhost:3001/notebooks/${data.notebookId}/notes/${data.noteId}`, {
-//       headers: {token: token},
-//       notebookId: notebookId
-//     })
-//     .then((resp) => {
-//       debugger
-//       dispatch({
-//         type: 'DELETE_NOTE',
-//         note: resp.data
-//       })
-//     })
-//     .catch((errors) => {
-//       debugger
-//       console.log(errors)
-//     })
-//   }
-// }
-
-
 export function addToolbar(state){
   return {
     type: "ADD_TOOLBAR"
@@ -239,4 +216,27 @@ export const addNote = (token, notebookId) => {
       console.log(errors)
     })
   }
+}
+
+export const deleteNote = (token, notebookId, noteId) => {
+  debugger
+ return(dispatch) => {
+   axios
+   .delete(`http://localhost:3001/notebooks/${notebookId}/notes/${noteId}`, {
+     headers: {token: token},
+     notebookId: notebookId,
+     noteId: noteId
+   })
+   .then((resp) => {
+     debugger
+     dispatch({
+       type: 'DELETE_NOTE',
+       note: resp.data
+     })
+   })
+   .catch((errors) => {
+     debugger
+     console.log(errors)
+   })
+ }
 }

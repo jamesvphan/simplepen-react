@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addNote, boldText, loadNote } from '../../actions/actions'
+import { addNote, boldText, loadNote, deleteNote } from '../../actions/actions'
 import Toolbar from '../Toolbar'
 
 class Note extends Component {
@@ -16,6 +16,8 @@ class Note extends Component {
       this.handleTitleChange = this.handleTitleChange.bind(this)
 
 	}
+
+
 
   componentWillMount() {
     debugger
@@ -45,7 +47,7 @@ class Note extends Component {
   handleOnClick(){
 
   }
-  
+
 	render(){
     debugger
     let object = this.props.note.body
@@ -71,7 +73,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     addNote: addNote,
     boldText: boldText,
-    loadNote: loadNote
+    loadNote: loadNote,
+    deleteNote: deleteNote
   }, dispatch)
 }
 

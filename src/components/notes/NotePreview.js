@@ -39,6 +39,7 @@ class NotePreview extends Component {
     })
   }
 
+
   render() {
     //debugger
     let object = this.props.currentNote.body
