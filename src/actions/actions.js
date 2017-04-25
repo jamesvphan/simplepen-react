@@ -91,7 +91,6 @@ export const addNotebook = (token, notebook) => {
      notebook: notebook
    })
    .then((resp) => {
-
      dispatch({
        type: 'ADD_NOTEBOOK',
        notebook: resp.data

@@ -1,0 +1,21 @@
+.image-about {
+  width: 250px;
+  height: 250px;
+  border-radius: 100%;
+  margin: 45px 0;
+}
+
+i {
+  color: black;
+  margin: 30px 10px;
+}
+
+div.back.about > span {
+  display: inline-block;
+  font-family: sans-serif;
+  margin-top: 40px;
+}
+
+#title {
+  font-size: 36px;
+}
