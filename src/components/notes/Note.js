@@ -10,7 +10,10 @@ class Note extends Component {
      	// const token = window.localStorage.getItem("token")
 	    // const config = { headers: { token: window.localStorage.getItem("token") } }
 	    this.state = {
-        currentNote: null
+        currentNote: null,
+        title: "This is a title",
+        body: "",
+        setFont : ''
 	    }
       this.handleOnChange = this.handleOnChange.bind(this)
       this.handleTitleChange = this.handleTitleChange.bind(this)
@@ -18,7 +21,7 @@ class Note extends Component {
 	}
 
   componentWillMount() {
-    debugger
+
     let note_id = this.props.match.params.noteid
     let notebook_id = this.props.match.params.notebookid
     if (note_id) {
@@ -29,7 +32,8 @@ class Note extends Component {
     this.props.loadNote(this.props.token, notebook_id, note_id)
   }
 
-  handleOnChange(){
+  handleOnChange(e){
+    e.preventDefault();
     this.setState({
       body: this.props.note.body
     })
@@ -38,31 +42,62 @@ class Note extends Component {
   handleTitleChange(ev){
     let name = ev.target.name
     this.setState({
-      [name]: ev.target.value
-    })
+      title: ev.target.value
+    });
   }
 
   handleOnClick(){
 
   }
+
+  changeFont(ev){
+    // console.log(this.state.setFont)
+    // console.log(ev.target.value)
+    // this.setState({
+    //   setFont: ev.target.value
+    // })
+    // console.log(this.state.setFont)
+    document.execCommand('fontName', false, ev.target.value);
+    document.querySelector(".setFont").style.display = 'none';
+    document.querySelector(".fontContainer").style.display = 'none';
+  }
+  
+  hideOverlay(){
+    console.log("not hiding")
+    document.querySelector(".fontContainer").style.display = 'none';   
+  }
+
   
 	render(){
     debugger
-    let object = this.props.note.body
+    console.log('note body: ' + this.props.note.body)
+    let object = this.state.body
 
 		return(
-			<div>
-        <input type="text" value={this.state.title} name="title" id="title" onChange={this.handleTitleChange} />
-				<Toolbar state={this.state}/>
-				<div
-          id="note"
-          className="description"
-          contentEditable="true"
-          onChange={this.handleOnChange}
-          dangerouslySetInnerHTML={{__html:object}} >
+      <div>
+        <div className="col-md-6 col-md-offset-3 mainwrap">
+          <input type="text" className="remove" value={this.state.title} name="title" id="title" onChange={this.handleTitleChange} />
+          <Toolbar note={this.state}/>
+          <div
+            id="note"
+            className="description"
+            contentEditable="true"
+            onChange={this.handleOnChange}
+            dangerouslySetInnerHTML={{__html:object}} >
+          </div>
         </div>
-
-			</div>
+        <div className="fontContainer">
+          <div className="fontContainerInner">
+            <select className="setFont" id="lang" onChange={this.changeFont} value={this.state.value}>
+                <option className="pickLora" value="Lora">Lora</option>
+                <option className="pickArial" value="Arial">Arial</option>
+                <option className="pickRaleway" value="Raleway">Raleway</option>
+                <option className="pickLeague" value="League Script">League Script</option>
+            </select>
+            <div><a onClick={this.hideOverlay}>Close</a></div>
+          </div>
+        </div>        
+      </div>
 		)
 	}
 }

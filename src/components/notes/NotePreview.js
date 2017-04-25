@@ -12,10 +12,15 @@ class NotePreview extends Component {
     this.state = {
       currentNote: null,
       title: '',
-      body: ''
+      body: '',
+      setLink: ''
     }
 
     this.handleOnChange = this.handleOnChange.bind(this)
+    this.hideOverlay = this.hideOverlay.bind(this)
+    this.addLink = this.addLink.bind(this)
+    this.changeLink = this.changeLink.bind(this)
+    //this.handleTitleChange = this.handleTitleChange.bind(this)
   }
 
   componentWillMount() {
@@ -31,6 +36,42 @@ class NotePreview extends Component {
     }
   }
 
+  addLink(ev){
+    ev.preventDefault();
+    console.log("target: " + ev.target.value)
+    document.execCommand("insertHTML", false, this.state.setLink);
+    document.querySelector(".setLink").style.display = 'none';
+    document.querySelector(".linkContainer").style.display = 'none';
+    this.setState({
+      setLink: ''
+    })
+  }
+
+  changeLink(ev){
+
+    this.setState({
+      setLink: ev.target.value
+    })
+  }
+
+  changeFont(ev){
+    // console.log(this.state.setFont)
+    // console.log(ev.target.value)
+    // this.setState({
+    //   setFont: ev.target.value
+    // })
+    // console.log(this.state.setFont)
+    document.execCommand('fontName', false, ev.target.value);
+    document.querySelector(".setFont").style.display = 'none';
+    document.querySelector(".fontContainer").style.display = 'none';
+  }
+  
+  hideOverlay(){
+    console.log("not hiding")
+    document.querySelector(".fontContainer").style.display = 'none';   
+  }
+
+
   handleOnChange(ev){
     let name = ev.target.name
     this.setState({
@@ -39,7 +80,7 @@ class NotePreview extends Component {
   }
 
   render() {
-    //debugger
+
     let object = this.props.currentNote.body
     let title = this.props.currentNote.title
 
@@ -74,25 +115,43 @@ class NotePreview extends Component {
 
     const actualNote = (
       <div>
-
-        <div
-          id="title"
-          contentEditable="true"
-          onChange={this.handleOnChange}
-          dangerouslySetInnerHTML={{__html:title}}
-        >
-        </div>
-				<Toolbar state={this.state}/>
-				<div
-          id="note"
-          className="description"
-          contentEditable="true"
-          onChange={this.handleOnChange}
-          dangerouslySetInnerHTML={{__html:object}}
-        >
+        <div className="col-md-6 col-md-offset-3 mainwrap">
+          <input type="text" className="remove" value={this.state.title} name="title" id="title" onChange={this.handleTitleChange} />
+          <Toolbar note={this.state}/>
+          <div
+            id="note"
+            className="description"
+            contentEditable="true"
+            onChange={this.handleOnChange}
+            dangerouslySetInnerHTML={{__html:object}} >
+          </div>
         </div>
 
-			</div>
+        <div className="fontContainer">
+          <div className="fontContainerInner">
+            <select className="setFont" id="lang" onChange={this.changeFont} value={this.state.value}>
+                <option className="pickLora" value="Lora">Lora</option>
+                <option className="pickArial" value="Arial">Arial</option>
+                <option className="pickRaleway" value="Raleway">Raleway</option>
+                <option className="pickLeague" value="League Script">League Script</option>
+            </select>
+            <div>
+              <a onClick={this.hideOverlay}>Close</a>
+            </div>
+          </div>
+        </div>
+        <div className="linkContainer">
+          <div className="linkContainerInner">
+            <form onSubmit={this.addLink}>
+              <input placeholder="Add Link" type="text" className="setLink" id="lang" onChange={this.changeLink} value={this.state.setLink} />
+              <input type="submit" value="Submit" />
+            </form>
+            <div>
+              <a onClick={this.hideLinkBox}>Close</a>
+            </div>
+          </div>
+        </div>         
+      </div>
     )
 
     return (
