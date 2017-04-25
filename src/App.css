@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700');
+@import url('https://fonts.googleapis.com/css?family=League+Script|Raleway|Slabo+27px');
 
 .App {
   text-align: center;
@@ -163,4 +165,80 @@ body {
 	  border-top-left-radius: 0;
 	  border-top-right-radius: 0;
 	}
+}
+
+
+body{
+  font-family:"Lora";
+}
+
+.description{
+  text-align:left !important;
+  font-family:"Lora";  
+}
+
+.description:focus{
+box-shadow:none;
+outline:none;
+  font-family:"Lora";
+
+}
+
+.description p {
+  font-size:22px;
+  line-height:30px;
+}
+
+.description h1{
+  font-size:38px;
+  font-weight:700;
+}
+
+
+.remove{
+  display:none;
+}
+
+
+.fontContainer{
+  position:fixed !important;
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.6);  
+  display:none;
+  text-align:center;
+}
+
+.fontContainerInner{
+  text-align:center;
+  margin:auto;
+  width:50%;
+  margin-top:100px;
+  transition: ease-in-out 0.3s;
+}
+
+.setFont{
+  font-size:28px;
+  display:none;
+  text-align:center;
+  background-color:rgba(0,0,0,0.5);
+  color:white;
+  width:100%;
+  height:60px;
+  border:none;
+  display: block;
+  margin: 0 auto;  
+}
+
+.pickLora{
+  font-family:"Lora";
+}
+.pickRaleway{
+  font-family:"Raleway";
+}
+.pickLeague{
+  font-family:"League Script";
+}
+.pickArial{
+  font-family:"Arial";
 }

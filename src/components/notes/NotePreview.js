@@ -32,6 +32,25 @@ class NotePreview extends Component {
     }
   }
 
+
+  changeFont(ev){
+    // console.log(this.state.setFont)
+    // console.log(ev.target.value)
+    // this.setState({
+    //   setFont: ev.target.value
+    // })
+    // console.log(this.state.setFont)
+    document.execCommand('fontName', false, ev.target.value);
+    document.querySelector(".setFont").style.display = 'none';
+    document.querySelector(".fontContainer").style.display = 'none';
+  }
+  
+  hideOverlay(){
+    console.log("not hiding")
+    document.querySelector(".fontContainer").style.display = 'none';   
+  }
+
+
   handleOnChange(ev){
     let name = ev.target.name
     this.setState({
@@ -40,7 +59,7 @@ class NotePreview extends Component {
   }
 
   render() {
-    //debugger
+
     let object = this.props.currentNote.body
     let title = this.props.currentNote.title
 
@@ -52,25 +71,29 @@ class NotePreview extends Component {
 
     const actualNote = (
       <div>
-
-        <div
-          id="title"
-          contentEditable="true"
-          onChange={this.handleOnChange}
-          dangerouslySetInnerHTML={{__html:title}}
-        >
+        <div className="col-md-6 col-md-offset-3 mainwrap">
+          <input type="text" className="remove" value={this.state.title} name="title" id="title" onChange={this.handleTitleChange} />
+          <Toolbar note={this.state}/>
+          <div
+            id="note"
+            className="description"
+            contentEditable="true"
+            onChange={this.handleOnChange}
+            dangerouslySetInnerHTML={{__html:object}} >
+          </div>
         </div>
-				<Toolbar state={this.state}/>
-				<div
-          id="note"
-          className="description"
-          contentEditable="true"
-          onChange={this.handleOnChange}
-          dangerouslySetInnerHTML={{__html:object}}
-        >
-        </div>
-
-			</div>
+        <div className="fontContainer">
+          <div className="fontContainerInner">
+            <select className="setFont" id="lang" onChange={this.changeFont} value={this.state.value}>
+                <option className="pickLora" value="Lora">Lora</option>
+                <option className="pickArial" value="Arial">Arial</option>
+                <option className="pickRaleway" value="Raleway">Raleway</option>
+                <option className="pickLeague" value="League Script">League Script</option>
+            </select>
+            <div><a onClick={this.hideOverlay}>Close</a></div>
+          </div>
+        </div>   
+      </div>
     )
 
     return (
