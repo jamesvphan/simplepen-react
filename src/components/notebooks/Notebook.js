@@ -100,7 +100,7 @@ class Notebook extends Component {
     })
 
     return (
-      <div>
+      <div className="note-container-test">
         {this.state.showNotebook ? notesPreview : notebookPreview}
 
       </div>
