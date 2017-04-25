@@ -34,8 +34,12 @@ class Notebook extends Component {
     ev.preventDefault()
     let notebookId = ev.target.dataset.notebookid
     this.props.addNote(this.props.token, notebookId)
-    let last = this.props.currentNotebook.notes.length - 1
-    this.props.history.push(`/notebooks/${this.state.showNotebook}/notes/${this.props.currentNotebook.notes[last].id}`)
+    let last = this.props.currentNotebook.notes.sort()
+    let something = last.sort(function(a,b){
+      return a.id - b.id
+    })
+    let next = something.length - 1
+    this.props.history.push(`/notebooks/${this.state.showNotebook}/notes/${this.props.currentNotebook.notes[next].id}`)
   }
 
 

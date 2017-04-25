@@ -106,7 +106,7 @@ class NotePreview extends Component {
           <div className="inner">
             <span className="scratch"></span>
             <div className="paper" data-note-id={this.props.id}>
-              <div style={{textDecoration:"underline"}}>{this.props.title}</div>
+              <div style={{textDecoration:"underline"}}>{this.props.id}</div>
             </div>
           </div>
         </div>
