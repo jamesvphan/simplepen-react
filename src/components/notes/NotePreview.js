@@ -11,10 +11,14 @@ class NotePreview extends Component {
     this.state = {
       currentNote: null,
       title: '',
-      body: ''
+      body: '',
+      setLink: ''
     }
 
     this.handleOnChange = this.handleOnChange.bind(this)
+    this.hideOverlay = this.hideOverlay.bind(this)
+    this.addLink = this.addLink.bind(this)
+    this.changeLink = this.changeLink.bind(this)
     //this.handleTitleChange = this.handleTitleChange.bind(this)
   }
 
@@ -32,6 +36,23 @@ class NotePreview extends Component {
     }
   }
 
+  addLink(ev){
+    ev.preventDefault();
+    console.log("target: " + ev.target.value)
+    document.execCommand("insertHTML", false, this.state.setLink);
+    document.querySelector(".setLink").style.display = 'none';
+    document.querySelector(".linkContainer").style.display = 'none';
+    this.setState({
+      setLink: ''
+    })
+  }
+
+  changeLink(ev){
+
+    this.setState({
+      setLink: ev.target.value
+    })
+  }
 
   changeFont(ev){
     // console.log(this.state.setFont)
@@ -82,6 +103,7 @@ class NotePreview extends Component {
             dangerouslySetInnerHTML={{__html:object}} >
           </div>
         </div>
+
         <div className="fontContainer">
           <div className="fontContainerInner">
             <select className="setFont" id="lang" onChange={this.changeFont} value={this.state.value}>
@@ -90,9 +112,22 @@ class NotePreview extends Component {
                 <option className="pickRaleway" value="Raleway">Raleway</option>
                 <option className="pickLeague" value="League Script">League Script</option>
             </select>
-            <div><a onClick={this.hideOverlay}>Close</a></div>
+            <div>
+              <a onClick={this.hideOverlay}>Close</a>
+            </div>
           </div>
-        </div>   
+        </div>
+        <div className="linkContainer">
+          <div className="linkContainerInner">
+            <form onSubmit={this.addLink}>
+              <input placeholder="Add Link" type="text" className="setLink" id="lang" onChange={this.changeLink} value={this.state.setLink} />
+              <input type="submit" value="Submit" />
+            </form>
+            <div>
+              <a onClick={this.hideLinkBox}>Close</a>
+            </div>
+          </div>
+        </div>         
       </div>
     )
 

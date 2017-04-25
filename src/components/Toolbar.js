@@ -11,7 +11,7 @@ class Toolbar extends Component {
   	super()
     this.state = {
     	nightMode : false,
-    	setFont : 'Lora'
+    	setFont : 'Lora',
     }
 
     	this.handleOnBold = this.handleOnBold.bind(this)
@@ -20,6 +20,7 @@ class Toolbar extends Component {
 		this.handleNightMode = this.handleNightMode.bind(this)
 		this.handleFullScreen = this.handleFullScreen.bind(this)
 		this.showFontBox = this.showFontBox.bind(this)
+		this.showLinkBox = this.showLinkBox.bind(this)
 	}
 
 	returnValue(test){
@@ -87,25 +88,31 @@ class Toolbar extends Component {
 	}
 
 	requestFullScreen(element) {
-	    // Supports most browsers and their versions.
-	    var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;
+		var doc = window.document;
+		var docEl = doc.documentElement;
 
-	    // if (requestMethod) { // Native full screen.
-	        requestMethod.call(element);
-	    // } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
-	    //     var wscript = new ActiveXObject("WScript.Shell");
-	    //     if (wscript !== null) {
-	    //         wscript.SendKeys("{F11}");
-	    //     }
-	    // }
-	    this.handleNightMode();	    
+		var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+		var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+		if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+			requestFullScreen.call(docEl);
+		}
+		else {
+			cancelFullScreen.call(doc);
+		}   
 	}
 
 	showFontBox(){
 		document.querySelector(".setFont").style.display = 'block';
 		document.querySelector(".fontContainer").style.display = 'block';
 	}
-
+	
+	showLinkBox(){
+		console.log("test")
+		document.querySelector(".setLink").style.display = 'block';
+		document.querySelector(".linkContainer").style.display = 'block';
+	}
+	
 	render(){
 		return(
 			<div>
@@ -115,8 +122,12 @@ class Toolbar extends Component {
 	  						<button onClick={this.handleFullScreen} className="fullscreen useicons" title="Toggle fullscreen">
 	              				<span className="glyphicon glyphicon-fullscreen"></span>
 	            			</button>
+		
+	  						<button className="target useicons" title="Set target word count" onClick={this.handleNightMode}>
+	              				<span className="glyphicon glyphicon-adjust"></span>
+	            			</button>
 
-	            			<button className="fullscreen useicons" title="Toggle fullscreen">
+	            			<button onClick={this.showLinkBox} className="fullscreen useicons" title="Toggle fullscreen">
 	             	 			<span className="glyphicon glyphicon-link"></span>
 	            			</button>
 
@@ -128,17 +139,15 @@ class Toolbar extends Component {
 	              				<span className="glyphicon glyphicon-italic"></span>
 	            			</button>
 
-	  						<button className="target useicons" title="Set target word count" onClick={this.handleNightMode}>
-	              				<span className="glyphicon glyphicon-adjust"></span>
-	            			</button>
+	  						<button onClick={this.showFontBox} className="save useicons" title="Save Text">
+	             			 	<span className="glyphicon glyphicon-font"></span>
+	            			</button> 
 
 	  						<button onClick={this.handleSave} className="save useicons" title="Save Text">
 	             			 	<span className="glyphicon glyphicon-floppy-disk"></span>
 	            			</button>
 
-	  						<button onClick={this.showFontBox} className="save useicons" title="Save Text">
-	             			 	<span className="glyphicon glyphicon-font"></span>
-	            			</button>
+      			
 	  					</div>
 
 		  				<div className="bottom">
