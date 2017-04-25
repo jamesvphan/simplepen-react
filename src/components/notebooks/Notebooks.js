@@ -33,7 +33,6 @@ class Notebooks extends Component {
 
   handleDeleteNotebook(ev){
     ev.preventDefault()
-    debugger
     let notebookId = ev.target.dataset.notebookid
     this.props.deleteNotebook(this.props.token, notebookId)
   }

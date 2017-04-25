@@ -52,7 +52,6 @@ class Notebook extends Component {
   render(){
     const notebookPreview = (
       <div>
-        <button onClick={this.props.onDeleteNotebook} data-notebookid={this.props.id}>Delete notebook</button>
         <button data-notebookid={this.props.id}  onClick={this.handleAddNote}>Add a note</button>
         <div className="container-class">
           <div className="notebook">
@@ -73,10 +72,14 @@ class Notebook extends Component {
               <div></div><div></div><div></div><div></div><div></div>
               <div></div><div></div><div></div><div></div><div></div>
             </div>
-            <div className="brand">
+            <div
+              className="brand"
+              onClick={this.props.onDeleteNotebook}
+              data-notebookid={this.props.id}
+            >
               <div className="letter">X</div>
             </div>
-            <a href="#"
+            <a href=""
               data-notebookid={this.props.id}
               onClick={this.props.onClick}
               className="notebook-links"
