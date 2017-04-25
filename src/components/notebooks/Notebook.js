@@ -19,7 +19,6 @@ class Notebook extends Component {
   }
 
   componentWillMount() {
-    // debugger
     let checkNotebookId = this.props.match
     let notebook_id
     if (checkNotebookId) {
@@ -34,14 +33,12 @@ class Notebook extends Component {
 
   handleAddNote(ev){
     ev.preventDefault()
-    debugger
     let notebookId = ev.target.dataset.notebookid
     this.props.addNote(this.props.token, notebookId)
   }
 
 
   handleOnClick(ev) {
-    debugger
     let note_id = ev.target.dataset.noteId
     this.props.history.push(`/notebooks/${this.state.showNotebook}/notes/${note_id}`)
   }
@@ -93,6 +90,7 @@ class Notebook extends Component {
     const notesPreview = this.props.currentNotebook.notes.map((note, index) => {
       return <NotePreview
         title={note.title}
+        body={note.body}
         key={index}
         id={note.id}
         onClick={this.handleOnClick}

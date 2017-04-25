@@ -19,7 +19,6 @@ class NotePreview extends Component {
   }
 
   componentWillMount() {
-    debugger
     let checkNoteId = this.props.match
     let note_id
     if (checkNoteId) {
@@ -65,7 +64,7 @@ class NotePreview extends Component {
           <div className="inner">
             <span className="scratch"></span>
             <div className="paper" data-note-id={this.props.id}>
-              {this.props.title}
+              <div style={{textDecoration:"underline"}}>{this.props.title}</div>
             </div>
           </div>
         </div>
