@@ -7,7 +7,7 @@ export default function manageSession(state = {
       return {token: action.token}
     case 'LOGOUT':
       return {token: ''}
-
+      debugger 
     default:
       return state
   }
