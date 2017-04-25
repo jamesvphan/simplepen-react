@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { loadNote } from '../../actions/actions'
 import Toolbar from '../Toolbar'
+import '../../App.css'
 
 class NotePreview extends Component {
   constructor() {
@@ -15,7 +16,6 @@ class NotePreview extends Component {
     }
 
     this.handleOnChange = this.handleOnChange.bind(this)
-    //this.handleTitleChange = this.handleTitleChange.bind(this)
   }
 
   componentWillMount() {
@@ -44,9 +44,29 @@ class NotePreview extends Component {
     let object = this.props.currentNote.body
     let title = this.props.currentNote.title
 
+
     const allNotesPreview = (
-      <div>
-        <a href="" data-note-id={this.props.id} onClick={this.props.onClick}>{this.props.id}{this.props.title}</a>
+      <div id="note" onClick={this.props.onClick} data-note-id={this.props.id}>
+        <div className="lines">
+        	<span className="horizontal" data-note-id={this.props.id}>
+        		<span></span><span></span><span></span>
+        		<span></span><span></span><span></span>
+        		<span></span>
+        	</span>
+        	<span className="vertical">
+        		<span></span><span></span>
+        	</span>
+        </div>
+        <div className="sticky" >
+          <div className="inner">
+            <span className="scratch"></span>
+            <div className="paper" >
+              <p>
+              	{this.props.title}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     )
 

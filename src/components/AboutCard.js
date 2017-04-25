@@ -15,10 +15,10 @@ class AboutCard extends Component {
         </div>
         <div className="back about">
           <span>Check Us Out</span> <br/>
-          <a className="icon" href="https://github.com/jamesvphan">
+          <a className="icon" href={this.props.github}>
             <i className="fa fa-github fa-3x" aria-hidden="true"></i>
           </a>
-          <a className="icon" href="https://www.linkedin.com/in/jamesvophan/">
+          <a className="icon" href={this.props.linkedin}>
             <i className="fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
           </a>
         </div>
