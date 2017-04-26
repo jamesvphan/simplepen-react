@@ -212,12 +212,13 @@ export const loadNote = (token, notebookid, noteid) => {
 }
 
 
-export const addNote = (token, notebookId) => {
+export const addNote = (token, notebookId, title) => {
   return(dispatch) => {
     axios
     .post(`http://localhost:3001/notebooks/${notebookId}/notes`, {
       headers: {token: token},
-      notebookId: notebookId
+      notebookId: notebookId,
+      title: title
     })
     .then((resp) => {
       dispatch({

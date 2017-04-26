@@ -1,18 +1,45 @@
+//
+// .about {
+//   // background-color: #b2cceb;
+//   // border-radius: 15px;
+// }
 
-.about {
-  // background-color: #b2cceb;
-  // border-radius: 15px;
+.container {
+  text-align: center;
+  margin: 0 !important;
+  border: 5px solid red;
 }
 
 .image-about {
-  width: 250px;
-  height: 250px;
   border-radius: 100%;
   margin: 45px 0;
+  width: 200px;
+  height: 200px;
 }
 
-.image-about:hover {
-  
+#grow {
+  background-color: #e8eced;
+  width:10px;
+  height: 0;
+  margin: 0 auto;
+  // transition: all 1s;
+  // i {
+  //   opacity: 0;
+  // }
+
+}
+
+#grow-active {
+  height: 200px;
+  width: 200px;
+  background-color: #e4e4e4;
+  margin: 0 auto;
+  border-radius: 15px;
+  transition: height 1s ease-in, weight 1s ease-in 1s;
+  // i {
+  //   opacity: 1;
+  //   transition: opacity 1s linear 1s;
+  // }
 }
 
 i {

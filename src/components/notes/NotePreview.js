@@ -65,10 +65,10 @@ class NotePreview extends Component {
     document.querySelector(".setFont").style.display = 'none';
     document.querySelector(".fontContainer").style.display = 'none';
   }
-  
+
   hideOverlay(){
     console.log("not hiding")
-    document.querySelector(".fontContainer").style.display = 'none';   
+    document.querySelector(".fontContainer").style.display = 'none';
   }
 
 
@@ -106,7 +106,10 @@ class NotePreview extends Component {
           <div className="inner">
             <span className="scratch"></span>
             <div className="paper" data-note-id={this.props.id}>
-              <div style={{textDecoration:"underline"}}>{this.props.id}</div>
+              <div style={{textDecoration:"underline"}}>
+                {this.props.id + " "}
+                {this.props.title}
+              </div>
             </div>
           </div>
         </div>
@@ -150,13 +153,13 @@ class NotePreview extends Component {
               <a onClick={this.hideLinkBox}>Close</a>
             </div>
           </div>
-        </div>         
+        </div>
       </div>
     )
 
     return (
       <div className="note-container-test">
-        {/* <button data-notebookid={this.props.id}  onClick={this.handleAddNote}>Delete a note (does not work)</button> */}
+
         {this.state.currentNote ? actualNote : allNotesPreview}
       </div>
     )
