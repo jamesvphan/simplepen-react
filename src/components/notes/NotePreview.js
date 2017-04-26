@@ -114,7 +114,7 @@ class NotePreview extends Component {
     )
 
     const actualNote = (
-      <div>
+      <div className="container">
         <div className="col-md-6 col-md-offset-3 mainwrap">
           <input type="text" className="remove" value={this.state.title} name="title" id="title" onChange={this.handleTitleChange} />
           <Toolbar note={this.state}/>
