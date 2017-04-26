@@ -83,7 +83,7 @@ class Notebook extends Component {
               onClick={this.props.onDeleteNotebook}
               data-notebookid={this.props.id}
             >
-              <div className="letter">X</div>
+              <div data-notebookid={this.props.id} className="letter">X</div>
             </div>
             <a href=""
               data-notebookid={this.props.id}

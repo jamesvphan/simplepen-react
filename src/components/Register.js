@@ -33,7 +33,6 @@ class Register extends Component{
 		return(
 			<div>
 			<div className="wrapper">
-				<h1 className="logo">SimplePen  <span className="glyphicon glyphicon-pencil"></span></h1><br></br>
 				<form className="form-signin" onSubmit={this.handleSubmit}>
 					Username:<input type="text" className="form-control" onChange={this.handleOnChange} name="username" /> <br/>
 					Email:<input type="email" className="form-control"  onChange={this.handleOnChange} name="email" /> <br/>

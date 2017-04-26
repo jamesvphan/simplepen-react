@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 // // import { addToolbar } from '../actions/toolbarAction'
 // import { boldText } from '../actions/noteActions'
 // import { italicsText } from '../actions/noteActions'
+import { Link, Redirect } from 'react-router-dom'
 import { saveNote, deleteNote } from '../actions/actions'
 
 class Toolbar extends Component {
@@ -12,6 +13,7 @@ class Toolbar extends Component {
     this.state = {
     	nightMode : false,
     	setFont : 'Lora',
+			redirect: false
     }
 
     	this.handleOnBold = this.handleOnBold.bind(this)
@@ -22,6 +24,7 @@ class Toolbar extends Component {
 			this.showFontBox = this.showFontBox.bind(this)
 			this.showLinkBox = this.showLinkBox.bind(this)
 			this.handleDeleteNote = this.handleDeleteNote.bind(this)
+			this.userLink = this.userLink.bind(this)
 	}
 
 	returnValue(test){
@@ -48,7 +51,10 @@ class Toolbar extends Component {
 			let notebookId = this.props.currentNote.notebook_id
 			let noteId = this.props.currentNote.id
 			this.props.deleteNote(this.props.token, notebookId, noteId)
-			this.props.history.push(`/notebooks/${notebookId}/notes`)
+				this.setState({
+					redirect: true
+				}
+			)
 		}
 
 
@@ -123,9 +129,15 @@ class Toolbar extends Component {
 		document.querySelector(".linkContainer").style.display = 'block';
 	}
 
+	userLink(notebookId){
+		debugger
+		return `/notebooks/${notebookId}/notes`
+	}
+
 	render(){
 		return(
 			<div>
+				  {this.state.redirect ? <Redirect to={this.userLink(this.props.currentNotebook.id)} /> : false}
 				<div className="ui">
 	        		<div className="wrapper">
 	  					<div className="top editing">
@@ -158,6 +170,7 @@ class Toolbar extends Component {
 	            			</button>
 
 								<button onClick={this.handleDeleteNote} className="save useicons" title="Save Text">
+									// <Link to={this.userLink(this.props.currentNotebook.id)} />
 										<span className="glyphicon glyphicon-remove"></span>
 									</button>
 	  					</div>
