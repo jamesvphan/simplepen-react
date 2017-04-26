@@ -36,10 +36,10 @@ export default function manageAccountReducer(state = {
 
 
     case 'DELETE_NOTE':
-      const notes = state.notes.filter(note => note.id !== action.id);
+      const notes = state.notes.filter(note => note.id !== action.note);
         return Object.assign({}, state, {
           notes: notes
-  })
+        })
 
     default:
     return state

@@ -114,7 +114,7 @@ export const deleteNotebook = (token, notebookId) => {
 
      dispatch({
        type: 'DELETE_NOTEBOOK',
-       notebook: resp.data
+       id: resp.data
      })
    })
    .catch((errors) => {
