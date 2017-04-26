@@ -98,15 +98,15 @@ class NotePreview extends Component {
             <span data-note-id={this.props.id}></span>
         		<span data-note-id={this.props.id}></span>
         	</span>
-        	<span className="vertical">
+        	<span data-note-id={this.props.id} className="vertical">
         		<span></span><span></span>
         	</span>
         </div>
-        <div className="sticky" >
-          <div className="inner">
-            <span className="scratch"></span>
-            <div className="paper" data-note-id={this.props.id}>
-              <div style={{textDecoration:"underline"}}>
+        <div data-note-id={this.props.id} className="sticky" >
+          <div data-note-id={this.props.id} className="inner">
+            <span data-note-id={this.props.id} className="scratch"></span>
+            <div data-note-id={this.props.id} className="paper" data-note-id={this.props.id}>
+              <div data-note-id={this.props.id} style={{textDecoration:"underline"}}>
                 {this.props.id + " "}
                 {this.props.title}
               </div>
@@ -117,7 +117,7 @@ class NotePreview extends Component {
     )
 
     const actualNote = (
-      <div>
+      <div className="container">
         <div className="col-md-6 col-md-offset-3 mainwrap">
           <input type="text" className="remove" value={this.state.title} name="title" id="title" onChange={this.handleTitleChange} />
           <Toolbar note={this.state}/>
