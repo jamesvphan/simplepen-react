@@ -11,7 +11,8 @@ class Notebook extends Component {
     super(props)
 
     this.state = {
-      showNotebook: null
+      showNotebook: null,
+      title: ''
     }
 
     this.handleAddNote = this.handleAddNote.bind(this)
@@ -32,8 +33,9 @@ class Notebook extends Component {
 
   handleAddNote(ev){
     ev.preventDefault()
-    let notebookId = ev.target.dataset.notebookid
-    this.props.addNote(this.props.token, notebookId)
+    let notebookId = this.props.match.params.notebookid
+    debugger
+    this.props.addNote(this.props.token, notebookId, this.state.title)
     let last = this.props.currentNotebook.notes.sort()
     let something = last.sort(function(a,b){
       return a.id - b.id
@@ -48,10 +50,15 @@ class Notebook extends Component {
     this.props.history.push(`/notebooks/${this.state.showNotebook}/notes/${note_id}`)
   }
 
+  handleOnChange(e){
+    this.setState({
+      title: e.target.value
+    })
+  }
+
   render(){
     const notebookPreview = (
       <div>
-        <button data-notebookid={this.props.id}  onClick={this.handleAddNote}>Add a note</button>
         <div className="container-class">
           <div className="notebook">
             <div className="outer-post-it">
@@ -100,10 +107,21 @@ class Notebook extends Component {
       />
     })
 
+    const withButton = (
+      <div>
+        <input
+          type="text"
+          name="title"
+          onChange={(e) => {this.handleOnChange(e)}}
+        />
+        <button data-notebookid={this.props.id}  onClick={this.handleAddNote}>Add a note</button>
+        {notesPreview}
+      </div>
+    )
+
     return (
       <div className="note-container-test">
-        <button data-notebookid={this.props.currentNotebook.id}  onClick={this.handleAddNote}>Add a note</button>
-        {this.state.showNotebook ? notesPreview : notebookPreview}
+        {this.state.showNotebook ? withButton : notebookPreview}
       </div>
     )
   }
