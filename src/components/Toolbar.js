@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 // // import { addToolbar } from '../actions/toolbarAction'
 // import { boldText } from '../actions/noteActions'
 // import { italicsText } from '../actions/noteActions'
-import { saveNote } from '../actions/actions'
+import { saveNote, deleteNote } from '../actions/actions'
 
 class Toolbar extends Component {
 	constructor() {
@@ -16,11 +16,12 @@ class Toolbar extends Component {
 
     	this.handleOnBold = this.handleOnBold.bind(this)
     	this.handleOnItalics = this.handleOnItalics.bind(this)
-		this.handleSave = this.handleSave.bind(this)
-		this.handleNightMode = this.handleNightMode.bind(this)
-		this.handleFullScreen = this.handleFullScreen.bind(this)
-		this.showFontBox = this.showFontBox.bind(this)
-		this.showLinkBox = this.showLinkBox.bind(this)
+			this.handleSave = this.handleSave.bind(this)
+			this.handleNightMode = this.handleNightMode.bind(this)
+			this.handleFullScreen = this.handleFullScreen.bind(this)
+			this.showFontBox = this.showFontBox.bind(this)
+			this.showLinkBox = this.showLinkBox.bind(this)
+			this.handleDeleteNote = this.handleDeleteNote.bind(this)
 	}
 
 	returnValue(test){
@@ -42,6 +43,15 @@ class Toolbar extends Component {
         this.props.saveNote(this.props.token, data)
     }
 
+		handleDeleteNote(){
+			debugger
+			let notebookId = this.props.currentNote.notebook_id
+			let noteId = this.props.currentNote.id
+			this.props.deleteNote(this.props.token, notebookId, noteId)
+			this.props.history.push(`/notebooks/${notebookId}/notes`)
+		}
+
+
   	handleOnBold(){
 		document.execCommand("bold", false, '')
   	}
@@ -54,14 +64,14 @@ class Toolbar extends Component {
   		})
   		if (newNightMode === true) {
    			document.body.style.background = '#000';
-   			document.body.style.setProperty ("background-color", "black", "important");			
+   			document.body.style.setProperty ("background-color", "black", "important");
    			document.body.style.color = 'white';
    			document.body.style.transition = 'ease-in-out 0.4s';
   		}
   		else{
   	   		document.body.style.background = 'white';
-   			document.body.style.setProperty ("background-color", "white", "important");	
-   			document.body.style.color = 'black';		
+   			document.body.style.setProperty ("background-color", "white", "important");
+   			document.body.style.color = 'black';
    			document.body.style.transition = 'ease-in-out 0.4s';
   		}
 
@@ -99,20 +109,20 @@ class Toolbar extends Component {
 		}
 		else {
 			cancelFullScreen.call(doc);
-		}   
+		}
 	}
 
 	showFontBox(){
 		document.querySelector(".setFont").style.display = 'block';
 		document.querySelector(".fontContainer").style.display = 'block';
 	}
-	
+
 	showLinkBox(){
 		console.log("test")
 		document.querySelector(".setLink").style.display = 'block';
 		document.querySelector(".linkContainer").style.display = 'block';
 	}
-	
+
 	render(){
 		return(
 			<div>
@@ -122,7 +132,7 @@ class Toolbar extends Component {
 	  						<button onClick={this.handleFullScreen} className="fullscreen useicons" title="Toggle fullscreen">
 	              				<span className="glyphicon glyphicon-fullscreen"></span>
 	            			</button>
-		
+
 	  						<button className="target useicons" title="Set target word count" onClick={this.handleNightMode}>
 	              				<span className="glyphicon glyphicon-adjust"></span>
 	            			</button>
@@ -141,13 +151,15 @@ class Toolbar extends Component {
 
 	  						<button onClick={this.showFontBox} className="save useicons" title="Save Text">
 	             			 	<span className="glyphicon glyphicon-font"></span>
-	            			</button> 
+	            			</button>
 
 	  						<button onClick={this.handleSave} className="save useicons" title="Save Text">
 	             			 	<span className="glyphicon glyphicon-floppy-disk"></span>
 	            			</button>
 
-      			
+								<button onClick={this.handleDeleteNote} className="save useicons" title="Save Text">
+										<span className="glyphicon glyphicon-remove"></span>
+									</button>
 	  					</div>
 
 		  				<div className="bottom">
@@ -167,6 +179,7 @@ function mapDispatchToProps(dispatch) {
 		// boldText: boldText,
 		// italicsText: italicsText,
 		saveNote: saveNote,
+		deleteNote: deleteNote
 	}, dispatch)
 }
 
