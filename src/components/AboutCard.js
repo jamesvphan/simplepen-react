@@ -21,7 +21,16 @@ class AboutCard extends Component {
           onClick={(ev) => this.handleOnClick(ev)}
         />
         <div id="grow">
-          <i className="fa fa-github fa-3x" aria-hidden="true"></i>
+          <div className="fake-text" style={{fontFamily:"Didot"}}>{this.props.personName}</div>
+          <div className="fake-text">
+            {this.props.description}
+          </div>
+          <a className="icon" href={this.props.github} target="_blank">
+            <i className="fa fa-github fa-3x" aria-hidden="true"></i>
+          </a>
+          <a className="icon" href={this.props.linkedin} target="_blank">
+            <i className="fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
       // <div className={this.props.container}>
@@ -30,14 +39,14 @@ class AboutCard extends Component {
       //       <img className="image-about" src={this.props.image} alt=""/> <br/>
       //       <div id="personName">{this.props.personName}</div>
       //     </div>
-      //     <div className="back about">
-            // <span>Check Us Out</span> <br/>
-            // <a className="icon" href={this.props.github}>
-            //   <i className="fa fa-github fa-3x" aria-hidden="true"></i>
-            // </a>
-            // <a className="icon" href={this.props.linkedin}>
-            //   <i className="fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
-            // </a>
+      // //     <div className="back about">
+      //       // <span>Check Us Out</span> <br/>
+      //       <a className="icon" href={this.props.github}>
+      //         <i className="fa fa-github fa-3x" aria-hidden="true"></i>
+      //       </a>
+      //       <a className="icon" href={this.props.linkedin}>
+      //         <i className="fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
+      //       </a>
       //     </div>
       //   </div>
       // </div>
