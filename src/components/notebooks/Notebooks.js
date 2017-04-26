@@ -24,22 +24,16 @@ class Notebooks extends Component {
     let notebook_id = ev.target.dataset.notebookid
     this.props.history.push(`/notebooks/${notebook_id}/notes`)
   }
-  //
-  // handleDeleteNote(ev){
-  //   ev.preventDefault()
-  //   debugger
-  //   let notebookId = ev.target.dataset.notebookid
-  //   this.props.deleteNote(this.props.token, notebookId)
-  // }
+
 
   handleDeleteNotebook(ev){
     ev.preventDefault()
     let notebookId = ev.target.dataset.notebookid
+    console.log(notebookId);
     this.props.deleteNotebook(this.props.token, notebookId)
   }
 
   logOut(){
-    debugger
     this.props.logout()
     this.props.history.push('/')
 }
@@ -50,7 +44,7 @@ class Notebooks extends Component {
     })
     return (
       <div>
-        <button onClick={this.logOut}>Logout</button>
+        <button onClick={this.logOut} className="btn btn-info btn-lg"><span className= "glyphicon glyphicon-log-out" >Logout</span></button>
         <NotebookForm />
         {notebooks}
       </div>

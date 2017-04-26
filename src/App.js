@@ -7,6 +7,7 @@ import Login from './components/Login';
 // import NotebookForm from './components/notebooks/NotebookForm'
 // import Notebooks from './components/notebooks/Notebooks'
 // import Note from './components/notes/Note'
+import { Link, Route, Redirect, Switch} from 'react-router-dom'
 import { setToken, addUser, login, setUser } from './actions/actions'
 import './App.css';
 
@@ -24,14 +25,13 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className="App">
-        <h1>This is SimplePen</h1>
+      <h1 className="logo">Welcome to SimplePen  <span className="glyphicon glyphicon-pencil"></span></h1><br></br>
         {(!!this.props.token) ? this.props.history.push('/notebooks') :
           <div>
             <Register register={this.props.register}/>
-            <Login login={this.props.login}/>
+          <h3> <Link to="/login">Or login here</Link></h3>
           </div>
         }
       </div>
