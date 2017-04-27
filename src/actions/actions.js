@@ -234,7 +234,6 @@ export const addNote = (token, notebookId, title) => {
 
 
 export const deleteNote = (token, notebookId, noteId) => {
-  debugger
  return(dispatch) => {
    axios
    .delete(`http://localhost:3001/notebooks/${notebookId}/notes/${noteId}`, {
@@ -243,14 +242,12 @@ export const deleteNote = (token, notebookId, noteId) => {
      noteId: noteId
    })
    .then((resp) => {
-     debugger
      dispatch({
        type: 'DELETE_NOTE',
        note: resp.data
      })
    })
    .catch((errors) => {
-     debugger
      console.log(errors)
    })
  }

@@ -61,15 +61,14 @@ class Note extends Component {
     document.querySelector(".setFont").style.display = 'none';
     document.querySelector(".fontContainer").style.display = 'none';
   }
-  
+
   hideOverlay(){
     console.log("not hiding")
-    document.querySelector(".fontContainer").style.display = 'none';   
+    document.querySelector(".fontContainer").style.display = 'none';
   }
 
-  
+
 	render(){
-    debugger
     console.log('note body: ' + this.props.note.body)
     let object = this.state.body
 
@@ -96,7 +95,7 @@ class Note extends Component {
             </select>
             <div><a onClick={this.hideOverlay}>Close</a></div>
           </div>
-        </div>        
+        </div>
       </div>
 		)
 	}

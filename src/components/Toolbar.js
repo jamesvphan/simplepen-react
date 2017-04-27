@@ -32,7 +32,6 @@ class Toolbar extends Component {
 	}
 
 	handleSave(){
-        debugger
         let notebookId = this.props.currentNote.notebook_id
         let noteId = this.props.currentNote.id
         let title = document.getElementById("title").innerText
@@ -47,7 +46,6 @@ class Toolbar extends Component {
     }
 
 		handleDeleteNote(){
-			debugger
 			let notebookId = this.props.currentNote.notebook_id
 			let noteId = this.props.currentNote.id
 			this.props.deleteNote(this.props.token, notebookId, noteId)
@@ -130,7 +128,6 @@ class Toolbar extends Component {
 	}
 
 	userLink(notebookId){
-		debugger
 		return `/notebooks/${notebookId}/notes`
 	}
 

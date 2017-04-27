@@ -6,9 +6,7 @@ class AboutCard extends Component {
 
   handleOnClick(ev) {
     let growDiv = ev.target.nextSibling
-    // debugger
     growDiv.id === "grow" ? growDiv.id = "grow-active" : growDiv.id = "grow"
-// debugger
     let spanDiv = ev.target.nextSibling.firstChild
     spanDiv.id === "test" ? spanDiv.id = "test-active" : spanDiv.id = "test"
   }
