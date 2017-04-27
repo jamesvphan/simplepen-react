@@ -153,7 +153,7 @@
 
 .notebook .brand {
   position: absolute;
-  height: 9%;
+  height: 12%;
   width: 15%;
   background-color: white;
   border-radius: 50%;
@@ -164,10 +164,11 @@
 .notebook .brand .letter {
   position: absolute;
   font-family: 'Audiowide';
-  left: 25%;
-  top: -10%;
+  left: 26%;
+  top: 6%;
   font-size: 1.8em;
   color: #DE5B52;
+  cursor:pointer;
 }
 
 .notebook .note {

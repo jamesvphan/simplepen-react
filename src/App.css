@@ -288,3 +288,41 @@ outline:none;
 	box-shadow: 1px 2px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
+.notebook-form{
+  text-align:center;
+}
+
+.notebook-form input{
+  border-style:solid;
+  border-width:1px;
+  width:300px;
+  height:40px;
+  border-radius:3px;
+  margin-bottom:4px;
+}
+
+
+.logout-btn{
+  margin-top:12px;
+  margin-left:10px;
+}
+.notesFormWrap{
+margin-left:10px;
+margin-top:10px;
+}
+.notesFormWrap input, .notesFormWrap button{
+  width:250px;
+  margin-bottom:3px;
+  border-style:solid;
+  border-radius:3px !important;
+}
+
+.clickMe{
+  cursor:pointer;
+}
+
+.backToNotebooks{
+  position:fixed;
+  bottom:10px;
+  left:10px;
+}

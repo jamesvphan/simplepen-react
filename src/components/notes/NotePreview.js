@@ -13,7 +13,8 @@ class NotePreview extends Component {
       currentNote: null,
       title: '',
       body: '',
-      setLink: ''
+      setLink: '',
+      created_at: ''
     }
 
     this.handleOnChange = this.handleOnChange.bind(this)
@@ -84,7 +85,6 @@ class NotePreview extends Component {
     let object = this.props.currentNote.body
     let title = this.props.currentNote.title
 
-
     const allNotesPreview = (
 
       <div id="note-sticky" onClick={this.props.onClick} data-note-id={this.props.id}>
@@ -107,8 +107,7 @@ class NotePreview extends Component {
             <span data-note-id={this.props.id} className="scratch"></span>
             <div data-note-id={this.props.id} className="paper" data-note-id={this.props.id}>
               <div data-note-id={this.props.id} style={{textDecoration:"underline"}}>
-                {this.props.id + " "}
-                {this.props.title}
+                {this.props.title + " "}<br/>
               </div>
             </div>
           </div>

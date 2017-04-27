@@ -43,7 +43,7 @@ class Notebooks extends Component {
     })
     return (
       <div>
-        <button onClick={this.logOut} className="btn btn-info btn-lg"><span className= "glyphicon glyphicon-log-out" >Logout</span></button>
+        <button onClick={this.logOut} className="btn btn-info logout-btn"><span className= "glyphicon glyphicon-log-out" >Logout</span></button>
         <NotebookForm />
         {notebooks}
       </div>

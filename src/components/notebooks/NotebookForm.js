@@ -40,8 +40,10 @@ class NotebookForm extends Component {
     return(
       <div>
         <form onSubmit={this.handleOnSubmit}>
-          Title<input type="text" onChange={this.handleOnChange} name='title'/>
-          <input type="submit" value="Add Notebook"/>
+          <div className="col-md-6 col-md-offset-3 notebook-form">
+          <h3>{this.props.currentUser.username}'s Notebooks</h3><br/><input placeholder="New Notebook Title" type="text" className="custom-input" onChange={this.handleOnChange} name='title'/><br/>
+          <input type="submit" className="btn btn-primary" value="Add Notebook"/>
+          </div>
         </form>
       </div>
     )
@@ -52,6 +54,7 @@ class NotebookForm extends Component {
 const mapStateToProps = (state) => {
   return {
     token: state.session.token,
+    currentUser: state.account
   }
 }
 

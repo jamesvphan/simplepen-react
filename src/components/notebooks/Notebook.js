@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import {Link} from 'react-router-dom'
 import { loadNotebook, addNote, deleteNotebook, logout, setUser } from '../../actions/actions'
 // import Note from '../notes/Note'
 import NotePreview from '../notes/NotePreview'
@@ -110,6 +111,7 @@ class Notebook extends Component {
       return <NotePreview
         title={note.title}
         body={note.body}
+        created_at={note.created_at}
         key={index}
         id={note.id}
         onClick={this.handleOnClick}
@@ -118,12 +120,16 @@ class Notebook extends Component {
 
     const withButton = (
       <div>
-        <input
+        <div className="notesFormWrap">
+          <input className="custom-input"
+          placeholder="Note Title"
           type="text"
           name="title"
           onChange={(e) => {this.handleOnChange(e)}}
-        />
-        <button data-notebookid={this.props.id}  onClick={this.handleAddNote}>Add a note</button>
+          /><br/>
+          <button className="btn btn-primary" data-notebookid={this.props.id}  onClick={this.handleAddNote}>Add a note</button>
+        </div>
+        <Link to='/notebooks'><button className="btn btn-danger backToNotebooks">Back to Notebooks</button></Link>
         {notesPreview}
       </div>
     )
