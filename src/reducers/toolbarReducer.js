@@ -5,8 +5,6 @@ export default function toolbarReducer(state = {
 }, action) {
   switch (action.type) {
     case "BOLD_TEXT":
-      //do the actual bolding
-      //debugger
       return Object.assign({}, state, {body: action.updatedNote})
 
       case "ITALICS_TEXT":

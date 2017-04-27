@@ -19,7 +19,6 @@ class Login extends Component{
 
 	handleSubmit(ev){
 		ev.preventDefault()
-		debugger
 		this.props.login(this.state)
 	}
 

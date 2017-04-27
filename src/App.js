@@ -18,7 +18,6 @@ class App extends Component {
   // }
 
   componentWillMount() {
-    //debugger
     if (this.props.token) {
       this.props.setUser(this.props.token)
     }

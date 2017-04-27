@@ -34,7 +34,6 @@ class Notebook extends Component {
   handleAddNote(ev){
     ev.preventDefault()
     let notebookId = this.props.match.params.notebookid
-    debugger
     this.props.addNote(this.props.token, notebookId, this.state.title)
     let last = this.props.currentNotebook.notes.sort()
     let something = last.sort(function(a,b){
