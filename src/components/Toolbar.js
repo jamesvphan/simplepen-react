@@ -26,16 +26,11 @@ class Toolbar extends Component {
 			this.handleDeleteNote = this.handleDeleteNote.bind(this)
 			this.userLink = this.userLink.bind(this)
 			this.setRedirectState = this.setRedirectState.bind(this)
-			// this.handleRedirect = this.handleRedirect.bind(this)
 	}
 
 	returnValue(test){
 		return {__html:test}
 	}
-
-	// handleRedirect(){
-	// 	this.props.history.push('/about')
-	// }
 
 	handleSave(){
         let notebookId = this.props.currentNote.notebook_id
@@ -64,7 +59,6 @@ class Toolbar extends Component {
 				redirect: true
 			})
 		}
-
 
   	handleOnBold(){
 		document.execCommand("bold", false, '')
@@ -152,23 +146,19 @@ class Toolbar extends Component {
 	              				<span className="glyphicon glyphicon-fullscreen"></span>
 	            			</button>
 
-	  						<button className="target useicons" title="Set target word count" onClick={this.handleNightMode}>
+	  						<button className="target useicons" title="Invert colors" onClick={this.handleNightMode}>
 	              				<span className="glyphicon glyphicon-adjust"></span>
 	            			</button>
 
-	            			<button onClick={this.showLinkBox} className="fullscreen useicons" title="Toggle fullscreen">
-	             	 			<span className="glyphicon glyphicon-link"></span>
-	            			</button>
-
-	  						<button className="color-flip useicons" title="Invert colors" onClick={this.handleOnBold}>
+	  						<button className="color-flip useicons" title="Bold text" onClick={this.handleOnBold}>
 	              				<span className="glyphicon glyphicon-bold"></span>
 	            			</button>
 
-	  						<button className="target useicons" title="Set target word count" onClick={this.handleOnItalics}>
+	  						<button className="target useicons" title="Italicize text" onClick={this.handleOnItalics}>
 	              				<span className="glyphicon glyphicon-italic"></span>
 	            			</button>
 
-	  						<button onClick={this.showFontBox} className="save useicons" title="Save Text">
+	  						<button onClick={this.showFontBox} className="save useicons" title="Change font">
 	             			 	<span className="glyphicon glyphicon-font"></span>
 	            			</button>
 
@@ -176,14 +166,20 @@ class Toolbar extends Component {
 	             			 	<span className="glyphicon glyphicon-floppy-disk"></span>
 	            			</button>
 
-								<button onClick={this.handleDeleteNote} className="save useicons" title="Save Text">
+								<button onClick={this.handleDeleteNote} className="delete useicons" title="Delete Note">
 										<span className="glyphicon glyphicon-remove"></span>
 									</button>
+
+								<button className="save useicons" title="Back to Notebook">
+									<Link to={this.userLink(this.props.currentNotebook.id)} >
+										<span className="glyphicon glyphicon-book"></span>
+										</Link>
+								</button>
 
 	  					</div>
 
 		  				<div className="bottom">
-								<button onClick={this.handleRedirect} className="save useicons" title="About Page">
+								<button onClick={this.handleRedirect} className="save useicons" title="Behind SimplePen">
 									<Link to='/about' >
 										<span className="glyphicon glyphicon-info-sign"></span>
 									</Link>
