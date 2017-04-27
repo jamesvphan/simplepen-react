@@ -40,7 +40,6 @@ class Notebook extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-  //  debugger
     if (prevProps.currentAccount.notes.length < this.props.currentAccount.notes.length) {
       let last = this.props.currentAccount.notes.sort()
       let something = last.sort(function(a,b){
