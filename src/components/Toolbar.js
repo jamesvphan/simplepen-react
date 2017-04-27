@@ -25,11 +25,17 @@ class Toolbar extends Component {
 			this.showLinkBox = this.showLinkBox.bind(this)
 			this.handleDeleteNote = this.handleDeleteNote.bind(this)
 			this.userLink = this.userLink.bind(this)
+			this.setRedirectState = this.setRedirectState.bind(this)
+			// this.handleRedirect = this.handleRedirect.bind(this)
 	}
 
 	returnValue(test){
 		return {__html:test}
 	}
+
+	// handleRedirect(){
+	// 	this.props.history.push('/about')
+	// }
 
 	handleSave(){
         let notebookId = this.props.currentNote.notebook_id
@@ -49,10 +55,14 @@ class Toolbar extends Component {
 			let notebookId = this.props.currentNote.notebook_id
 			let noteId = this.props.currentNote.id
 			this.props.deleteNote(this.props.token, notebookId, noteId)
-				this.setState({
-					redirect: true
-				}
-			)
+
+			setTimeout(this.setRedirectState, 500)
+		}
+
+		setRedirectState(){
+			this.setState({
+				redirect: true
+			})
 		}
 
 
@@ -167,13 +177,17 @@ class Toolbar extends Component {
 	            			</button>
 
 								<button onClick={this.handleDeleteNote} className="save useicons" title="Save Text">
-									// <Link to={this.userLink(this.props.currentNotebook.id)} />
 										<span className="glyphicon glyphicon-remove"></span>
 									</button>
+
 	  					</div>
 
 		  				<div className="bottom">
-		  					<button className="about">?</button>
+								<button onClick={this.handleRedirect} className="save useicons" title="About Page">
+									<Link to='/about' >
+										<span className="glyphicon glyphicon-info-sign"></span>
+									</Link>
+									</button>
 		  				</div>
 				  	</div>
 				</div>

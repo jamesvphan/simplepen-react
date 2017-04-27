@@ -2,13 +2,15 @@ import React, {Component} from 'react'
 import '../about.css'
 import '../../public/font-awesome/css/font-awesome.min.css'
 import AboutCard from './AboutCard'
+import { Link } from 'react-router-dom'
 
 class About extends Component {
 
   render() {
     return(
       <div className="container">
-        <span id="title">SimplePen</span>
+        <Link to='/notebooks'><span id="title">SimplePen</span></Link>
+        <h4>A minimalist writing zone to focus your thoughts. Built with Ruby on Rails and React-Redux. Check our profile for more!</h4>
         <br />
         <AboutCard
           description="A bona fide tech enthusiast, coder, and elephant lover. A front-end whiz, with endless back-end possibilities."
@@ -22,10 +24,10 @@ class About extends Component {
           personName="Vicky Rathsmill"
           image="../../images/vicky.jpg"
           github='https://github.com/vrathsmill'
-          linkedin='https://www.linkedin.com/in/victoria-rathsmill-5b954293/'
+          linkedin='https://www.linkedin.com/in/victoria-rathsmill/'
         />
         <AboutCard
-          description="I like big BUTTS and I cannot lie. Yas kween. Yas kween. Yas kween. YAS KWEEN!"
+          description="Builds things with rails and javascript"
           personName="Zayne Abraham"
           image='../../images/zayne.png'
           github='https://github.com/yellowpad'

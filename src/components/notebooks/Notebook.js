@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { loadNotebook, addNote, deleteNotebook, logout } from '../../actions/actions'
+import { loadNotebook, addNote, deleteNotebook, logout, setUser } from '../../actions/actions'
 // import Note from '../notes/Note'
 import NotePreview from '../notes/NotePreview'
 import '../../test.css'
@@ -29,18 +29,28 @@ class Notebook extends Component {
       })
       this.props.loadNotebook(this.props.token, notebook_id)
     }
+    //this.props.setUser(this.props.token)
   }
 
   handleAddNote(ev){
     ev.preventDefault()
     let notebookId = this.props.match.params.notebookid
     this.props.addNote(this.props.token, notebookId, this.state.title)
-    let last = this.props.currentNotebook.notes.sort()
-    let something = last.sort(function(a,b){
-      return a.id - b.id
-    })
-    let next = something.length - 1
-    this.props.history.push(`/notebooks/${this.state.showNotebook}/notes/${this.props.currentNotebook.notes[next].id}`)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+  //  debugger
+    if (prevProps.currentAccount.notes.length < this.props.currentAccount.notes.length) {
+      let last = this.props.currentAccount.notes.sort()
+      let something = last.sort(function(a,b){
+        return a.id - b.id
+      })
+      let next = 0
+        if (something.length > 0) {
+          next = something.length - 1
+        }
+      this.props.history.push(`/notebooks/${this.state.showNotebook}/notes/${this.props.currentAccount.notes[next].id}`)
+    }
   }
 
 
@@ -129,7 +139,8 @@ class Notebook extends Component {
 const mapStateToProps = (state) => {
   return {
     token: state.session.token,
-    currentNotebook: state.notebook
+    currentNotebook: state.notebook,
+    currentAccount: state.account
   }
 }
 
@@ -138,7 +149,8 @@ const mapDispatchToProps = (dispatch) => {
     loadNotebook: loadNotebook,
     addNote: addNote,
     deleteNotebok: deleteNotebook,
-    logout: logout
+    logout: logout,
+    setUser: setUser
   }, dispatch)
 }
 

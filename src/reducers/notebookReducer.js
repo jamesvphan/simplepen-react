@@ -1,6 +1,4 @@
 
-
-
 export default function notebookReducer(state = {
   id: '',
   title: '',

@@ -344,7 +344,10 @@ a:hover {
 	}
 }
 
-
+.bottom {
+  position: absolute;
+  bottom: 200px;
+}
 
 body {
 	background: #F8F8FF !important;
