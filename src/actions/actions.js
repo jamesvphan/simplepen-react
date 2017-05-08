@@ -8,7 +8,7 @@ export const setToken = (token) => ({
 export const setUser = (token) => {
   return(dispatch) => {
     axios
-    .post(`https://simplepen.herokuapp.com/user`, {
+    .post(`https://simplepen-api.herokuapp.com/user`, {
       headers: {token: token}
     })
     .then((resp) => {
@@ -31,7 +31,7 @@ export const addUser = (state) => {
   return(dispatch) => {
 
     axios
-    .post('https://simplepen.herokuapp.com/users', {
+    .post('https://simplepen-api.herokuapp.com/users', {
       user: {
         username: state.username,
         email: state.email,
@@ -56,7 +56,7 @@ export const addUser = (state) => {
 export const login = (state) => {
   return(dispatch) => {
     axios
-    .post('https://simplepen.herokuapp.com/sessions',
+    .post('https://simplepen-api.herokuapp.com/sessions',
     {
       username: state.username,
       password: state.password
@@ -86,7 +86,7 @@ export const logout = (token) => {
 export const addNotebook = (token, notebook) => {
  return(dispatch) => {
    axios
-   .post(`https://simplepen.herokuapp.com/notebooks`, {
+   .post(`https://simplepen-api.herokuapp.com/notebooks`, {
      headers: {token: token},
      notebook: notebook
    })
@@ -106,7 +106,7 @@ export const addNotebook = (token, notebook) => {
 export const deleteNotebook = (token, notebookId) => {
  return(dispatch) => {
    axios
-   .delete(`https://simplepen.herokuapp.com/notebooks/${notebookId}`, {
+   .delete(`https://simplepen-api.herokuapp.com/notebooks/${notebookId}`, {
      headers: {token: token},
      notebookId: notebookId
    })
@@ -134,7 +134,7 @@ export const saveNote = (token, data) => {
 
   return(dispatch) => {
     axios
-    .patch(`https://simplepen.herokuapp.com/notebooks/${data.notebookId}/notes/${data.noteId}`, data, {
+    .patch(`https://simplepen-api.herokuapp.com/notebooks/${data.notebookId}/notes/${data.noteId}`, data, {
       headers: {token: token}
     })
     .then((resp) => {
@@ -153,7 +153,7 @@ export const saveNote = (token, data) => {
 export const loadNotebook = (token, notebookid) => {
   return(dispatch) => {
     axios
-    .get(`https://simplepen.herokuapp.com/notebooks/${notebookid}`, {
+    .get(`https://simplepen-api.herokuapp.com/notebooks/${notebookid}`, {
       headers: {token: token}
     })
     .then((resp) => {
@@ -172,7 +172,7 @@ export const loadNotebook = (token, notebookid) => {
 export const loadNote = (token, notebookid, noteid) => {
   return(dispatch) => {
     axios
-    .get(`https://simplepen.herokuapp.com/notebooks/${notebookid}/notes/${noteid}`, {
+    .get(`https://simplepen-api.herokuapp.com/notebooks/${notebookid}/notes/${noteid}`, {
       headers: {token: token}
     })
     .then((resp) => {
@@ -181,6 +181,7 @@ export const loadNote = (token, notebookid, noteid) => {
         note: resp.data
       })
     })
+
     .catch((errors) => {
       console.log(errors)
     })
@@ -191,7 +192,7 @@ export const loadNote = (token, notebookid, noteid) => {
 export const addNote = (token, notebookId, title) => {
   return(dispatch) => {
     axios
-    .post(`https://simplepen.herokuapp.com/notebooks/${notebookId}/notes`, {
+    .post(`https://simplepen-api.herokuapp.com/notebooks/${notebookId}/notes`, {
       headers: {token: token},
       notebookId: notebookId,
       title: title
@@ -212,7 +213,7 @@ export const addNote = (token, notebookId, title) => {
 export const deleteNote = (token, notebookId, noteId) => {
  return(dispatch) => {
    axios
-   .delete(`https://simplepen.herokuapp.com/notebooks/${notebookId}/notes/${noteId}`, {
+   .delete(`https://simplepen-api.herokuapp.com/notebooks/${notebookId}/notes/${noteId}`, {
      headers: {token: token},
      notebookId: notebookId,
      noteId: noteId

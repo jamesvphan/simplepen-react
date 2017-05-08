@@ -55,6 +55,7 @@ class Notebook extends Component {
 
 
   handleOnClick(ev) {
+    ev.preventDefault()
     let note_id = ev.target.dataset.noteId
     this.props.history.push(`/notebooks/${this.state.showNotebook}/notes/${note_id}`)
   }

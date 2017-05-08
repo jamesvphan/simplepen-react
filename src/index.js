@@ -7,6 +7,7 @@ import {
 } from 'react-router-redux'
 import {
   Route,
+  Switch
 //  Link
 } from 'react-router-dom'
 import {
@@ -23,7 +24,7 @@ import Notebook from './components/notebooks/Notebook'
 import Notebooks from './components/notebooks/Notebooks'
 import NotePreview from './components/notes/NotePreview'
 import Login from './components/Login'
-import NotebookForm from './components/notebooks/NotebookForm'
+// import NotebookForm from './components/notebooks/NotebookForm'
 import Register from './components/Register'
 import About from './components/About'
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -62,7 +63,7 @@ ReactDOM.render(
         <Route path='/register' component={Register}></Route>
         <Route exact path='/about' component={About}></Route>
         <Route path='/notes' component={Note}></Route>
-        <Route path='/add-notebook' component={NotebookForm}></Route>
+        {/* <Route path='/add-notebook' component={NotebookForm}></Route> */}
         <Route exact path='/notebooks' component={Notebooks}></Route>
         <Route exact path='/notebooks/:notebookid/notes' component={Notebook}></Route>
         <Route exact path='/notebooks/:notebookid/notes/:noteid' component={NotePreview} />
